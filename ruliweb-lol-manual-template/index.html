@@ -1,52 +1,31 @@
 <meta charset="UTF-8">
 
-<h3>이 공략은 흐트므를의 챔피언 공략 틀을 사용합니다. 다음 Tampermonkey 스크립트<a href="#">(추후 업데이트 예정)</a>를 이용하면 더욱 풍부한 정보를 전달받으실 수 있습니다.</h3>
+<p>이 공략은 <a href="https://github.com/anesin1109/ruliweb-lol-manual-template">흐트므를의 챔피언 공략 틀</a>을 사용합니다. 다음 Tampermonkey 스크립트<a href="#">(추후 업데이트 예정)</a>를 이용하면 더욱 풍부한 정보를 보실 수 있습니다.</p>
 
-<div class="manual_container">
-  <div id="manual_links">
-    <div class="manual_link-title">
-      바로가기
-    </div>
-    <div class="manual_link">
-      <a href="#manual_header">머리말</a>
-    </div>
-    <div class="manual_link script-only">
-      <a href="#manual_stats">능력치</a>
-    </div>
-    <div class="manual_link">
-      <a href="#manual_runes">룬</a>
-    </div>
-    <div class="manual_link">
-      <a href="#manual_spells">스펠</a>
-    </div>
-    <div class="manual_link">
-      <a href="#manual_skills">스킬</a>
-    </div>
-    <div class="manual_link">
-      <a href="#manual_items">아이템</a>
-    </div>
-    <div class="manual_link">
-      <a href="#manual_counterpicks">카운터픽</a>
-    </div>
-    <div class="manual_link">
-      <a href="#manual_champ-vs-tips">챔피언별 상대법</a>
-    </div>
-    <div class="manual_link">
-      <a href="#manual_addition">추가 공략</a>
-    </div>
-  </div>
+<div class="container">
+  <ul class="list-group">
+    <a href="#manual_header"class="list-group-item list-group-item-action">머리말</a>
+    <a href="#manual_stats"class="list-group-item list-group-item-action script-only">능력치</a>
+    <a href="#manual_runes"class="list-group-item list-group-item-action">룬</a>
+    <a href="#manual_spells"class="list-group-item list-group-item-action">스펠</a>
+    <a href="#manual_skills"class="list-group-item list-group-item-action">스킬</a>
+    <a href="#manual_items"class="list-group-item list-group-item-action">아이템</a>
+    <a href="#manual_counterpicks"class="list-group-item list-group-item-action">카운터픽</a>
+    <a href="#manual_champ-vs-tips"class="list-group-item list-group-item-action">챔피언별 상대법</a>
+    <a href="#manual_addition"class="list-group-item list-group-item-action">추가 공략</a>
+  </ul>
   
-  <div id="manual_header">
+  <div id="manual_header" class="section">
     <h2>머리말</h2>
     여기는 머리말입니다.
   </div>
   
-  <div id="manual_stats" class="script-only">
+  <div id="manual_stats" class="section script-only">
     <h2>능력치</h2>
     Tampermonkey 스크립트를 적용했을 때에만 나타나는 능력치 문단입니다.
   </div>
   
-  <div id="manual_runes">
+  <div id="manual_runes" class="section">
     <h2>룬</h2>
     <div class="manual_runes-viewer">
       여기에 룬 정보 생성기<a href="https://anesin1109.github.io/rune-generator/">(링크)</a>으로 만든 룬 정보를 붙여넣으세요.
@@ -54,12 +33,12 @@
     추가 설명은 여기 적으시면 됩니다.
   </div>
   
-  <div id="manual_spells">
+  <div id="manual_spells" class="section">
     <h2>스펠</h2>
     설명 글에 있는 각종 이미지 넣는 법을 통해서 스펠 이미지와 설명을 넣어 주시면 됩니다.
   </div>
   
-  <div id="manual_skills">
+  <div id="manual_skills" class="section">
     <h2>스킬</h2>
     <div class="manual_skills-viewer">
       여기에 스킬 정보 생성기<a href="#">(추후 업데이트 예정)</a>으로 만든 스킬 정보를 붙여넣으세요.
@@ -67,7 +46,7 @@
     추가 설명은 여기 적으시면 됩니다.
   </div>
   
-  <div id="manual_items">
+  <div id="manual_items" class="section">
     <h2>아이템</h2>
     <div class="manual_items-viewer">
       여기에 아이템 정보 생성기<a href="#">(추후 업데이트 예정)</a>으로 만든 아이템 정보를 붙여넣으세요.
@@ -75,39 +54,39 @@
     추가 설명은 여기 적으시면 됩니다.
   </div>
   
-  <div id="manual_counterpicks">
+  <div id="manual_counterpicks" class="section">
     <h2>카운터픽</h2>
     <div id="manual_counterpicks-wrapper">
       <h4>상대하기 어려운 챔피언</h4>
-      <div class="manual_counterpick">
+      <div class="card manual_counterpick">
         <div class="manual_counterpick-info">
           <img src="https://ddragon.leagueoflegends.com/cdn/8.11.1/img/champion/Aatrox.png" class="manual_counterpicks-image" /><p>아트록스</p>
         </div>
-        <div class="manual_counterpick-desc">
+        <div class="card manual_counterpick-desc">
           옆의 이미지는 설명 글의 방법대로 넣으시면 되고, 여기에는 설명을 적으시면 됩니다.
         </div>
       </div>
     </div>
     <div id="manual_easypicks-wrapper">
       <h4>상대하기 쉬운 챔피언</h4>
-      <div class="manual_easypick">
+      <div class="card manual_easypick">
         <div class="manual_easypick-info">
           <img src="https://ddragon.leagueoflegends.com/cdn/8.11.1/img/champion/Aatrox.png" class="manual_counterpicks-image" /><p>아트록스</p>
         </div>
-        <div class="manual_easypick-desc">
+        <div class="card manual_easypick-desc">
           옆의 이미지는 설명 글의 방법대로 넣으시면 되고, 여기에는 설명을 적으시면 됩니다.
         </div>
       </div>
     </div>
   </div>
-  <div id="manual_champ-vs-tips">
+  <div id="manual_champ-vs-tips" class="section">
     <h2>챔피언별 상대법</h2>
-    <div class="manual_champ-tip">
+    <div class="card manual_champ-tip">
       <div class="manual_champ-tip-header">
         <div class="manual_champ-tip-info">
           <img src="https://ddragon.leagueoflegends.com/cdn/8.11.1/img/champion/Aatrox.png" class="manual_champ-tip-image" /><p>아트록스</p><p>(★☆☆☆☆)</p>
         </div>
-        <div class="manual_champ-tip-builds">
+        <div class="card manual_champ-tip-builds">
           <div class="manual_champ-tip-spells">
             추천 스펠:
             <img src="https://vignette.wikia.nocookie.net/leagueoflegends/images/9/95/Cleanse.png/revision/latest?cb=20180514002812" class="manual_champ-tip-spell-img manual_icon" />
@@ -129,40 +108,30 @@
       </div>
     </div>
   </div>
-  <div id="manual_addition">
+  <div id="manual_addition" class="section">
     <h2>추가 공략</h2>
     추가 공략은 여기 적으시면 됩니다.
   </div>
 </div>
 
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 <style>
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 @import url('https://fonts.googleapis.com/earlyaccess/notosanskr.css');
 
-.manual_container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  font-family: 'Roboto', 'Noto Sans KR';
+.container {
+  font-family: -apple-system,BlinkMacSystemFont,"Noto Sans KR", "Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol" !important;
   background-color: #fafafa;
+  padding: 20px;
 }
 
-#manual_links {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid;
-  width: 200px;
-  text-align: center;
+.card {
+  padding: 20px;
 }
 
-.manual_link-title {
-  font-weight: bold;
-  border: 1px solid;
-}
-
-.manual_link {
-  border: 1px solid #e6e6e6;
+.section {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .script-only {
@@ -180,14 +149,11 @@
 
 .manual_counterpick, .manual_easypick {
   display: flex;
-}
-
-.manual_counterpick div, .manual_easypick div {
-  border: 1px solid;
+  flex-direction: row;
 }
 
 .manual_counterpick-desc, .manual_easypick-desc {
-  padding: 20px;
+  margin-left: 20px;
 }
 
 /* champ vs tips */
@@ -199,11 +165,6 @@
 
 .manual_champ-tip-header {
   display: flex;
-  border: 1px solid;
-}
-
-.manual_champ-tip-info {
-  border: 1px solid;
 }
 
 .manual_champ-tip-info p {
@@ -215,6 +176,7 @@
   flex-direction: column;
   justify-content: space-around;
   text-align: left;
+  margin-left: 20px;
 }
 
 /* for rune */
