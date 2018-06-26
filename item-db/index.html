@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>LoL Item DB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div id="app">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">아이콘</th>
+            <th scope="col">이름</th>
+            <th scope="col">설명</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(item, i) in items" :key="i" :id="item.id">
+            <td><img :src="item.img" class="icon"></td>
+            <td><p class="name">{{ item.name }}</p><p class="price">{{ item.price }}G</p></td>
+            <td>
+              <p v-html="item.desc" class="desc"/>
+              <p v-if="item.from !== undefined">
+                하위 아이템:
+                <a v-for="(from, j) in item.from" :href="'#' + from" :key="j"><img :src="'https://ddragon.leagueoflegends.com/cdn/8.12.1/img/item/' + data[from].image.full" class="icon-frominto"></a>
+              </p>
+              <p v-if="item.into !== undefined">
+                상위 아이템:
+                <a v-for="(into, j) in item.into" :href="'#' + into" :key="j"><img :src="'https://ddragon.leagueoflegends.com/cdn/8.12.1/img/item/' + data[into].image.full" class="icon-frominto"></a>
+              </p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <style>
+    td {
+      background-color: #0C1416;
+      color: #d3d3d3
+    }
+
+    .icon {
+      width: 60px;
+      height: 60px;
+    }
+
+    .icon-frominto {
+      width: 40px;
+      height: 40px;
+      margin-left: 2px;
+      margin-right: 2px;
+    }
+
+    .name {
+      color: #92A298;
+    }
+
+    .price {
+      color: #C8CF98;
+    }
+
+    .desc {
+      color: #476A60
+    }
+
+    groupLimit, stats{
+      color: #98BE98
+    }
+
+    unique, passive {
+      color: #D5C057
+    }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+    let app = new Vue({
+      el: '#app',
+      data: {
+        items: [],
+        data: undefined
+      },
+      mounted(){
+        axios.get('https://ddragon.leagueoflegends.com/cdn/8.12.1/data/ko_KR/item.json').then(res => {
+          this.data = res.data.data
+
+          for (let item in res.data.data) {
+            let desc = res.data.data[item].description
+
+            this.items.push({
+              id: item,
+              img: 'https://ddragon.leagueoflegends.com/cdn/8.12.1/img/item/' + res.data.data[item].image.full,
+              name: res.data.data[item].name,
+              price: res.data.data[item].gold.total,
+              desc: res.data.data[item].description,
+              from: res.data.data[item].from,
+              into: res.data.data[item].into
+            })
+          }
+        })
+      }
+    })
+    </script>
+  </body>
+</html>
