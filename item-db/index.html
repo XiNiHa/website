@@ -25,11 +25,11 @@
               <p v-html="item.desc" class="desc"/>
               <p v-if="item.from !== undefined">
                 하위 아이템:
-                <a v-for="(from, j) in item.from" :href="'#' + from" :key="j"><img :src="'https://ddragon.leagueoflegends.com/cdn/8.12.1/img/item/' + data[from].image.full" class="icon-frominto"></a>
+                <a v-for="(from, j) in item.from" :href="'#' + from" :key="j"><img :src="'https://ddragon.leagueoflegends.com/cdn/8.13.1/img/item/' + data[from].image.full" class="icon-frominto"></a>
               </p>
               <p v-if="item.into !== undefined">
                 상위 아이템:
-                <a v-for="(into, j) in item.into" :href="'#' + into" :key="j"><img :src="'https://ddragon.leagueoflegends.com/cdn/8.12.1/img/item/' + data[into].image.full" class="icon-frominto"></a>
+                <a v-for="(into, j) in item.into" :href="'#' + into" :key="j"><img :src="'https://ddragon.leagueoflegends.com/cdn/8.13.1/img/item/' + data[into].image.full" class="icon-frominto"></a>
               </p>
             </td>
           </tr>
@@ -84,7 +84,7 @@
         data: undefined
       },
       mounted(){
-        axios.get('https://ddragon.leagueoflegends.com/cdn/8.12.1/data/ko_KR/item.json').then(res => {
+        axios.get('https://ddragon.leagueoflegends.com/cdn/8.13.1/data/ko_KR/item.json').then(res => {
           this.data = res.data.data
 
           for (let item in res.data.data) {
@@ -92,7 +92,7 @@
 
             this.items.push({
               id: item,
-              img: 'https://ddragon.leagueoflegends.com/cdn/8.12.1/img/item/' + res.data.data[item].image.full,
+              img: 'https://ddragon.leagueoflegends.com/cdn/8.13.1/img/item/' + res.data.data[item].image.full,
               name: res.data.data[item].name,
               price: res.data.data[item].gold.total,
               desc: res.data.data[item].description,
