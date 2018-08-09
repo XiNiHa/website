@@ -107,7 +107,7 @@
         data: undefined
       },
       mounted(){
-        axios.get('https://ddragon.leagueoflegends.com/cdn/8.13.1/data/ko_KR/item.json').then(res => {
+        axios.get('https://ddragon.leagueoflegends.com/cdn/8.15.1/data/ko_KR/item.json').then(res => {
           this.data = res.data.data
 
           for (let item in res.data.data) {
@@ -115,7 +115,7 @@
 
             this.items.push({
               id: item,
-              img: 'https://ddragon.leagueoflegends.com/cdn/8.13.1/img/item/' + res.data.data[item].image.full,
+              img: 'https://ddragon.leagueoflegends.com/cdn/8.15.1/img/item/' + res.data.data[item].image.full,
               name: res.data.data[item].name,
               price: res.data.data[item].gold.total,
               desc: res.data.data[item].description,
