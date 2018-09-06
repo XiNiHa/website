@@ -1,4 +1,4 @@
-# anesin1109.github.io
+# XiNiHa.github.io
 저는 프로그래머입니다. 다른 분야도 하긴 하지만 요즘 웹이 재밌습니다.  
 했던 & 하는 프로젝트는 다음과 같습니다.  
 * [LoL 아이템 DB](/item-db/)
