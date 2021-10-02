@@ -1,4 +1,9 @@
-# XiNiHa.github.io
+# XiNiHa.dev
+
+곧 리모델링될 예정입니다.
+
+## 옛날에 만든 것들
+
 * [LoL 아이템 DB](/item-db/)
 * [루리웹을 위한 LoL 공략 틀](/ruliweb-lol-manual-template)
 * [LoL 공략 업로더](/manual-uploader)
