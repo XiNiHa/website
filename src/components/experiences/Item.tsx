@@ -14,8 +14,12 @@ const Item: React.FC<Props> = ({ experience, subprojectMap }) => {
   const [contentHeight, setContentHeight] = React.useState(0)
   const fixedPartRef = React.useRef<HTMLDivElement>(null)
   const contentRef = React.useRef<HTMLDivElement>(null)
-  const [observer] = React.useState(
-    new ResizeObserver(() => {
+  const observer = React.useRef<ResizeObserver | null>(null)
+
+  const isExpansionRender = prevExpanded !== expanded
+
+  React.useEffect(() => {
+    observer.current = new ResizeObserver(() => {
       if (fixedPartRef.current) {
         setFixedPartHeight(fixedPartRef.current.clientHeight)
       }
@@ -23,26 +27,24 @@ const Item: React.FC<Props> = ({ experience, subprojectMap }) => {
         setContentHeight(contentRef.current.clientHeight)
       }
     })
-  )
-
-  const isExpansionRender = prevExpanded !== expanded
+  }, [])
 
   React.useEffect(() => {
     if (fixedPartRef.current) {
       const node = fixedPartRef.current
-      observer.observe(node)
+      observer.current?.observe(node)
       setFixedPartHeight(node.clientHeight)
 
-      return () => observer.unobserve(node)
+      return () => observer.current?.unobserve(node)
     }
   }, [fixedPartRef.current])
   React.useEffect(() => {
     if (contentRef.current) {
       const node = contentRef.current
-      observer.observe(node)
+      observer.current?.observe(node)
       setContentHeight(node.clientHeight)
 
-      return () => observer.unobserve(node)
+      return () => observer.current?.unobserve(node)
     }
   }, [contentRef.current])
 

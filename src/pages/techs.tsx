@@ -27,26 +27,28 @@ const TechsPage: React.FC<PageProps<DataProps> & TransitionProps> = ({
 }) => {
   const [activeTech, setActiveTech] = React.useState<Tech | null>(null)
   const [wrapperHeight, setWrapperHeight] = React.useState<number>(0)
-  const [observer] = React.useState(
-    new ResizeObserver(entries => {
+  const observer = React.useRef<ResizeObserver | null>(null)
+  const contentRef = React.useRef<HTMLDivElement>(null)
+
+  data.techs.nodes.sort((a, b) => a.frontmatter.order - b.frontmatter.order)
+  
+  React.useEffect(() => {
+    observer.current = new ResizeObserver(entries => {
       const first = entries.shift()
 
       if (first?.contentRect.height) {
         setWrapperHeight(first.contentRect.height)
       }
     })
-  )
-  const contentRef = React.useRef<HTMLDivElement>(null)
-
-  data.techs.nodes.sort((a, b) => a.frontmatter.order - b.frontmatter.order)
-
+  }, [])
+  
   React.useEffect(() => {
     if (contentRef.current) {
       const node = contentRef.current
-      observer.observe(node)
+      observer.current?.observe(node)
       setWrapperHeight(node.clientHeight)
 
-      return () => observer.unobserve(node)
+      return () => observer.current?.unobserve(node)
     }
   }, [contentRef.current])
 
