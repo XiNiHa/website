@@ -28,8 +28,34 @@ body {
 
 /* Make page transition container to place items with different heights correctly placed */
 .tl-edges {
+  position: relative;
+  height: 100%;
   display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
+}
+.tl-wrapper {
+  float: none;
+  top: 0;
+}
+.tl-wrapper + .tl-wrapper {
+  position: absolute;
+  margin-left: 0;
+}
+
+@media (min-width: 1024px) {
+  .tl-edges {
+    flex-direction: row;
+  }
+  .tl-wrapper {
+    float: left;
+    top: unset;
+  }
+  .tl-wrapper + .tl-wrapper {
+    position: relative;
+    margin-left: -100%;
+  }
 }
 
 .fade-enter {

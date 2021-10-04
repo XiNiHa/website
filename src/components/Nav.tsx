@@ -13,7 +13,7 @@ const Nav: React.FC = () => {
   }
 
   return (
-    <div className="my-2 flex flex-row lg:flex-col items-end lg:items-start">
+    <div className="my-2 flex flex-row min-h-[120px] lg:flex-col items-end lg:items-start">
       <h1 className="font-title text-xl xs:text-3xl lg:text-5xl mx-2 xs:whitespace-nowrap">
         <span className="nw">신의하</span>{' / '}
         <span className="nw">Iha Shin</span>

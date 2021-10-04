@@ -10,7 +10,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         <Nav />
         <div className="mx-4 lg:my-4 border-t border-l border-dashed border-fill-3 my-4 lg:mx-8" />
       </div>
-      <main className="flex-1 overflow-y-scroll lg:max-w-3xl">{children}</main>
+      <main className="w-full flex-1 lg:max-w-3xl overflow-y-auto">{children}</main>
     </div>
   )
 }

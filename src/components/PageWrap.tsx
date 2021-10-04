@@ -22,14 +22,14 @@ const PageWrap: React.FC<Props> = ({ children, transitionStatus }) => {
   }
 
   return (
-    <div
-      className={
-        'max-w-full transition-opacity duration-500 text-right flex flex-col items-end my-4 px-6 h-full lg:max-h-[70vh] overflow-y-auto ' +
-        getClassName()
-      }
-    >
-      {children}
-    </div>
+      <div
+        className={
+          'max-w-full transition-opacity duration-500 text-right flex flex-col items-end my-4 px-6 h-full lg:max-h-[70vh] overflow-y-auto ' +
+          getClassName()
+        }
+      >
+        {children}
+      </div>
   )
 }
 
