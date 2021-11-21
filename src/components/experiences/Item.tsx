@@ -57,7 +57,7 @@ const Item: React.FC<Props> = ({ experience, subprojectMap }) => {
     >
       <div
         className={
-          'flex justify-end items-stretch sm:flex-nowrap ' +
+          'flex justify-end items-stretch hover:cursor-pointer sm:flex-nowrap ' +
           (experience.frontmatter.isSubproject ? '' : 'flex-wrap')
         }
         onClick={() => setExpanded(prev => !prev)}
