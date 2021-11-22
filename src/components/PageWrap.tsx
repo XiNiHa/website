@@ -1,4 +1,5 @@
 import * as React from 'react'
+import ScrollArea from './ScrollArea'
 
 type TransitionStatus = 'entering' | 'entered' | 'exiting' | 'exited'
 
@@ -22,14 +23,12 @@ const PageWrap: React.FC<Props> = ({ children, transitionStatus }) => {
   }
 
   return (
-      <div
-        className={
-          'max-w-full transition-opacity duration-500 text-right flex flex-col items-end my-4 px-6 h-full lg:max-h-[70vh] overflow-y-auto ' +
-          getClassName()
-        }
-      >
-        {children}
-      </div>
+    <ScrollArea
+      className={'h-full transition-opacity duration-500 ' + getClassName()}
+      containerClassName="max-w-full h-full text-right transition-opacity duration-500 flex flex-col items-end p-4 h-full lg:max-h-[70vh]"
+    >
+      {children}
+    </ScrollArea>
   )
 }
 

@@ -83,9 +83,9 @@ const Item: React.FC<Props> = ({ experience, subprojectMap }) => {
             </a>
           )}
           {experience.frontmatter.isSubproject && ' • '}
-          {experience.frontmatter.title.map(seg => (
+          {experience.frontmatter.title.map((seg, i) => (
             <>
-              <span className="nw">{seg}</span>{' '}
+              <span className="nw" key={i}>{seg}</span>{' '}
             </>
           ))}
         </h3>
@@ -141,9 +141,9 @@ const Item: React.FC<Props> = ({ experience, subprojectMap }) => {
                   : 'text-lg md:text-xl')
               }
             >
-              {experience.frontmatter.fixedPart.map(seg => (
+              {experience.frontmatter.fixedPart.map((seg, i) => (
                 <>
-                  <span className="nw">{seg}</span>{' '}
+                  <span className="nw" key={i}>{seg}</span>{' '}
                 </>
               ))}
             </p>

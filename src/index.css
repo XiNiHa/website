@@ -26,6 +26,19 @@ body {
   white-space: nowrap;
 }
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+html {
+  overflow: hidden;
+}
+
 /* Make page transition container to place items with different heights correctly placed */
 .tl-edges {
   position: relative;
@@ -36,6 +49,7 @@ body {
   align-items: center;
 }
 .tl-wrapper {
+  max-height: 100%;
   float: none;
   top: 0;
 }
