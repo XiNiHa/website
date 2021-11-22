@@ -27,4 +27,4 @@ fixedPart:
 <span class="nw">최신 RC Release를 지원하지 않아,</span>
 
 <span class="nw">해당 부분에 대한</span>
-<span class="nw">지원을 추가하였습니다. ([#545](https://github.com/async-graphql/async-graphql/pull/545))</span>
+<span class="nw">지원을 추가하였습니다. [(#545)](https://github.com/async-graphql/async-graphql/pull/545)</span>

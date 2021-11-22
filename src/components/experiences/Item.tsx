@@ -150,7 +150,7 @@ const Item: React.FC<Props> = ({ experience, subprojectMap }) => {
             <div
               dangerouslySetInnerHTML={{ __html: experience.html }}
               className={
-                'flex flex-col items-end text-right font-body ' +
+                'flex flex-col items-end text-right font-body underline-a ' +
                 (experience.frontmatter.isSubproject
                   ? 'text-base md:text-lg'
                   : 'text-lg md:text-xl')
