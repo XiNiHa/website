@@ -43,4 +43,4 @@ fixedPart:
 <span class="nw">한 멤버가 다른 멤버에 의존하는 경우에</span>
 <span class="nw">정상적으로 동작하지 않는 문제가 존재하여,</span>
 
-<span class="nw">해당 부분을 개선하였습니다. ([#5](https://github.com/reason-seoul/yarn-plugin-rescript/pull/5))</span>
+<span class="nw">해당 부분을 개선하였습니다. [(#5)](https://github.com/reason-seoul/yarn-plugin-rescript/pull/5)</span>

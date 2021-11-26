@@ -30,4 +30,4 @@ fixedPart:
 <span class="nw">지원하지 않아,</span>
 
 <span class="nw">해당 부분에 대한</span>
-<span class="nw">지원을 추가하였습니다. ([#905](https://github.com/graphql-rust/juniper/pull/905))</span>
+<span class="nw">지원을 추가하였습니다. [(#905)](https://github.com/graphql-rust/juniper/pull/905)</span>

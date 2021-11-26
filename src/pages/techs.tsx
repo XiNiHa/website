@@ -25,7 +25,7 @@ const TechsPage: React.FC<PageProps<DataProps> & TransitionProps> = ({
   data,
   transitionStatus,
 }) => {
-  const [activeTech, setActiveTech] = React.useState<Tech | null>(null)
+  const [activeTech, setActiveTech] = React.useState<Tech | null>(data.techs.nodes[0])
   const [wrapperHeight, setWrapperHeight] = React.useState<number>(0)
   const observer = React.useRef<ResizeObserver | null>(null)
   const contentRef = React.useRef<HTMLDivElement>(null)

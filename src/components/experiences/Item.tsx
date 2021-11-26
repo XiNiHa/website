@@ -57,7 +57,7 @@ const Item: React.FC<Props> = ({ experience, subprojectMap }) => {
     >
       <div
         className={
-          'flex justify-end items-stretch sm:flex-nowrap ' +
+          'flex justify-end items-stretch hover:cursor-pointer sm:flex-nowrap ' +
           (experience.frontmatter.isSubproject ? '' : 'flex-wrap')
         }
         onClick={() => setExpanded(prev => !prev)}
@@ -83,9 +83,9 @@ const Item: React.FC<Props> = ({ experience, subprojectMap }) => {
             </a>
           )}
           {experience.frontmatter.isSubproject && ' • '}
-          {experience.frontmatter.title.map(seg => (
+          {experience.frontmatter.title.map((seg, i) => (
             <>
-              <span className="nw">{seg}</span>{' '}
+              <span className="nw" key={i}>{seg}</span>{' '}
             </>
           ))}
         </h3>
@@ -141,16 +141,16 @@ const Item: React.FC<Props> = ({ experience, subprojectMap }) => {
                   : 'text-lg md:text-xl')
               }
             >
-              {experience.frontmatter.fixedPart.map(seg => (
+              {experience.frontmatter.fixedPart.map((seg, i) => (
                 <>
-                  <span className="nw">{seg}</span>{' '}
+                  <span className="nw" key={i}>{seg}</span>{' '}
                 </>
               ))}
             </p>
             <div
               dangerouslySetInnerHTML={{ __html: experience.html }}
               className={
-                'flex flex-col items-end text-right font-body ' +
+                'flex flex-col items-end text-right font-body underline-a ' +
                 (experience.frontmatter.isSubproject
                   ? 'text-base md:text-lg'
                   : 'text-lg md:text-xl')

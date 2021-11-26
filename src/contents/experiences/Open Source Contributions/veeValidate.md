@@ -40,4 +40,4 @@ fixedPart:
 <span class="nw">(비)활성화 할 수 있도록 개선하고,</span>
 
 <span class="nw">Jest를 활용한 테스트</span>
-<span class="nw">코드도 추가하였습니다. ([#2980](https://github.com/logaretm/vee-validate/pull/2980))</span>
+<span class="nw">코드도 추가하였습니다. [(#2980)](https://github.com/logaretm/vee-validate/pull/2980)</span>

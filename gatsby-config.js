@@ -24,5 +24,18 @@ module.exports = {
         layout: require.resolve(`./src/components/Layout.tsx`),
       },
     },
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingIds: ["G-8CRDZ1XSEN"],
+        gtagConfig: {
+          anonymize_ip: true,
+          cookie_expires: 0,
+        },
+        pluginConfig: {
+          // respectDNT: true,
+        },
+      },
+    }
   ],
 }
