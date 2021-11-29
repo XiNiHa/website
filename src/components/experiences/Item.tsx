@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { usePrevious } from 'react-use'
 import { Experience } from '../../pages/experiences'
+import SmoothIcon from '../SmoothIcon'
 
 type Props = {
   experience: Experience
@@ -75,17 +76,19 @@ const Item: React.FC<Props> = ({ experience, subprojectMap }) => {
               className="mx-1 self-center"
               onClick={e => e.stopPropagation()}
             >
-              <img
-                src="https://cdn.svgporn.com/logos/github-icon.svg"
-                alt="Github Icon"
-                className="h-5 md:h-6 inline-block mb-1.5 mx-2"
+              <SmoothIcon
+                iconUrl="https://cdn.svgporn.com/logos/github-icon.svg"
+                iconAlt="Github Icon"
+                className="w-5 h-5 md:w-6 md:h-6 mx-2 inline-block"
               />
             </a>
           )}
           {experience.frontmatter.isSubproject && ' • '}
           {experience.frontmatter.title.map((seg, i) => (
             <>
-              <span className="nw" key={i}>{seg}</span>{' '}
+              <span className="nw" key={i}>
+                {seg}
+              </span>{' '}
             </>
           ))}
         </h3>
@@ -143,7 +146,9 @@ const Item: React.FC<Props> = ({ experience, subprojectMap }) => {
             >
               {experience.frontmatter.fixedPart.map((seg, i) => (
                 <>
-                  <span className="nw" key={i}>{seg}</span>{' '}
+                  <span className="nw" key={i}>
+                    {seg}
+                  </span>{' '}
                 </>
               ))}
             </p>

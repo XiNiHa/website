@@ -1,4 +1,5 @@
 import * as React from 'react'
+import SmoothIcon from './SmoothIcon'
 
 type Props = {
   isActive: boolean
@@ -18,7 +19,7 @@ const Chip: React.FC<Props> = ({ isActive, iconUrl, text, onClick }) => {
       }
       onClick={onClick}
     >
-      <img src={iconUrl} alt={`${text} icon`} className="h-full" />
+      <SmoothIcon className="w-[22px] h-[22px]" iconUrl={iconUrl} iconAlt={`${text} icon`} />
       {text}
     </button>
   )
