@@ -2,6 +2,7 @@
 title_:
   - Frontend Developer @
   - NutritionCourt
+order: 1
 when: 2020.09 ~ 2021.07
 subprojects:
   - welcoachMvp
