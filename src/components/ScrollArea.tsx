@@ -86,7 +86,7 @@ const ScrollArea: React.FC<Props> = ({ className, containerClassName, children }
         ref={containerRef}
         className={containerClassName + ' flex-grow overflow-y-auto no-scrollbar'}
       >
-        <div ref={innerRef}>{children}</div>
+        <div ref={innerRef} className="max-w-full">{children}</div>
       </div>
       <div
         className={
