@@ -69,7 +69,7 @@ const TechsPage: React.FC<PageProps<DataProps> & TransitionProps> = ({
         ))}
       </ul>
       <div
-        className="transition-all duration-500 overflow-hidden flex items-center"
+        className="transition-all duration-500 overflow-hidden flex justify-end items-center"
         style={{ height: wrapperHeight + 'px' }}
       >
         <div ref={contentRef}>
