@@ -1,52 +1,56 @@
 import * as React from 'react'
-import { PageProps } from 'gatsby'
+import { graphql, PageProps } from 'gatsby'
 import PageWrap, { TransitionProps } from '../components/PageWrap'
 import SEO from '../components/SEO'
 import SmoothIcon from '../components/SmoothIcon'
 
-const ContactPage: React.FC<PageProps & TransitionProps> = ({
+interface DataProps {
+  contentsYaml: {
+    contacts: {
+      iconUrl: string
+      iconAlt: string
+      href: string
+      text: string
+    }[]
+  }
+}
+
+const ContactPage: React.FC<PageProps<DataProps> & TransitionProps> = ({
+  data,
   transitionStatus,
 }) => {
   return (
     <PageWrap transitionStatus={transitionStatus}>
       <SEO title="Contact" />
       <ul className="flex flex-col items-end font-body text-xl md:text-3xl text-fill-5">
-        <li className="flex items-center">
-          <SmoothIcon
-            iconUrl="https://raw.githubusercontent.com/twbs/icons/main/icons/envelope.svg"
-            iconAlt="Email Icon"
-            className="w-6 h-6 mx-2"
-          />
-          <a href="mailto:me@xiniha.dev" className="hover:underline">
-            me@xiniha.dev
-          </a>
-        </li>
-        <li className="flex items-center">
-          <SmoothIcon
-            iconUrl="https://cdn.svgporn.com/logos/github-icon.svg"
-            iconAlt="Github Icon"
-            className="w-6 h-6 mx-2"
-          />
-          <a href="https://github.com/XiNiHa" className="hover:underline">
-            @XiNiHa
-          </a>
-        </li>
-        <li className="flex items-center">
-          <SmoothIcon
-            iconUrl="https://raw.githubusercontent.com/twbs/icons/main/icons/twitter.svg"
-            iconAlt="Twitter Icon"
-            className="w-6 h-6 mx-2"
-          />
-          <a
-            href="https://twitter.com/xiniha_1e88df"
-            className="hover:underline"
-          >
-            @xiniha_1e88df
-          </a>
-        </li>
+        {data.contentsYaml.contacts.map(contact => (
+          <li className="flex items-center" key={contact.href}>
+            <SmoothIcon
+              iconUrl={contact.iconUrl}
+              iconAlt={contact.iconAlt}
+              className="w-6 h-6 mx-2"
+            />
+            <a href={contact.href} className="hover:underline">
+              {contact.text}
+            </a>
+          </li>
+        ))}
       </ul>
     </PageWrap>
   )
 }
+
+export const query = graphql`
+  query {
+    contentsYaml {
+      contacts {
+        iconUrl
+        iconAlt
+        href
+        text
+      }
+    }
+  }
+`
 
 export default ContactPage

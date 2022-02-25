@@ -13,6 +13,7 @@ module.exports = {
         path: `${__dirname}/src/contents`,
       },
     },
+    `gatsby-transformer-yaml`,
     `gatsby-transformer-remark`,
     `gatsby-plugin-postcss`,
     {
@@ -24,7 +25,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
-        trackingIds: ["G-8CRDZ1XSEN"],
+        trackingIds: ['G-8CRDZ1XSEN'],
         gtagConfig: {
           anonymize_ip: true,
           cookie_expires: 0,
@@ -33,6 +34,6 @@ module.exports = {
           // respectDNT: true,
         },
       },
-    }
+    },
   ],
 }
