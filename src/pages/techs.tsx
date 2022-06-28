@@ -5,33 +5,23 @@ import PageWrap, { TransitionProps } from '../components/PageWrap'
 import SEO from '../components/SEO'
 import Chip from '../components/Chip'
 
-type DataProps = {
-  techs: {
-    nodes: Tech[]
-  }
-}
+const TechsPage: React.FC<
+  PageProps<Queries.TechsPageQuery> & TransitionProps
+> = ({ data, transitionStatus }) => {
+  const [sorted] = React.useState(() => {
+    const sorted = data.techs.nodes.slice()
+    sorted.sort(
+      (a, b) => (a.frontmatter?.order ?? -1) - (b.frontmatter?.order ?? -1)
+    )
+    return sorted
+  })
 
-type Tech = {
-  frontmatter: {
-    title: string
-    order: number
-    iconUrl: string
-  }
-  html: string
-}
-
-const TechsPage: React.FC<PageProps<DataProps> & TransitionProps> = ({
-  data,
-  transitionStatus,
-}) => {
-  const [activeTech, setActiveTech] = React.useState<Tech | null>(
-    data.techs.nodes[0]
-  )
+  const [activeTech, setActiveTech] = React.useState<
+    Queries.TechsPageQuery['techs']['nodes'][number] | null
+  >(sorted[0])
   const [wrapperHeight, setWrapperHeight] = React.useState<number>(0)
   const observer = React.useRef<ResizeObserver | null>(null)
   const contentRef = React.useRef<HTMLDivElement>(null)
-
-  data.techs.nodes.sort((a, b) => a.frontmatter.order - b.frontmatter.order)
 
   React.useEffect(() => {
     observer.current = new ResizeObserver(entries => {
@@ -57,16 +47,18 @@ const TechsPage: React.FC<PageProps<DataProps> & TransitionProps> = ({
     <PageWrap transitionStatus={transitionStatus}>
       <SEO title="Techs I use & love" />
       <ul className="flex justify-end flex-wrap gap-2 my-6">
-        {data.techs.nodes.map(tech => (
-          <li key={tech.frontmatter.title}>
-            <Chip
-              isActive={activeTech === tech}
-              text={tech.frontmatter.title}
-              iconUrl={tech.frontmatter.iconUrl}
-              onClick={() => setActiveTech(tech)}
-            />
-          </li>
-        ))}
+        {sorted
+          .filter(tech => Boolean(tech.frontmatter))
+          .map((tech, i) => (
+            <li key={tech.frontmatter?.title ?? i}>
+              <Chip
+                isActive={activeTech === tech}
+                text={tech.frontmatter?.title ?? ''}
+                iconUrl={tech.frontmatter?.iconUrl ?? ''}
+                onClick={() => setActiveTech(tech)}
+              />
+            </li>
+          ))}
       </ul>
       <div
         className="transition-all duration-500 overflow-hidden flex justify-end items-center"
@@ -75,15 +67,15 @@ const TechsPage: React.FC<PageProps<DataProps> & TransitionProps> = ({
         <div ref={contentRef}>
           <SwitchTransition mode="out-in">
             <CSSTransition
-              key={activeTech?.frontmatter.title}
+              key={activeTech?.frontmatter?.title}
               addEndListener={(node, done) => {
                 node.addEventListener('transitionend', done, false)
               }}
               classNames="fade"
             >
-              {activeTech ? (
+              {activeTech?.html ? (
                 <div
-                  key={activeTech?.frontmatter.title}
+                  key={activeTech?.frontmatter?.title}
                   dangerouslySetInnerHTML={{ __html: activeTech.html }}
                   className="w-full float-right font-body text-xl md:text-3xl text-fill-3"
                 />
@@ -101,7 +93,7 @@ const TechsPage: React.FC<PageProps<DataProps> & TransitionProps> = ({
 export default TechsPage
 
 export const query = graphql`
-  query {
+  query TechsPage {
     techs: allMarkdownRemark(
       filter: { fileAbsolutePath: { regex: "//techs//" } }
     ) {

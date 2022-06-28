@@ -53,13 +53,13 @@ const Item: React.FC<Props> = ({ experience, subprojectMap }) => {
     <li
       className={
         'flex flex-col items-end ' +
-        (experience.frontmatter.stack ? 'gap-1' : 'gap-1 md:gap-2')
+        (experience.frontmatter?.stack ? 'gap-1' : 'gap-1 md:gap-2')
       }
     >
       <div
         className={
           'flex justify-end items-stretch hover:cursor-pointer sm:flex-nowrap ' +
-          (experience.frontmatter.isSubproject ? '' : 'flex-wrap')
+          (experience.frontmatter?.isSubproject ? '' : 'flex-wrap')
         }
         onClick={() => setExpanded(prev => !prev)}
       >
@@ -67,13 +67,13 @@ const Item: React.FC<Props> = ({ experience, subprojectMap }) => {
           className={`
             font-body text-fill-3
             ${
-              experience.frontmatter.isSubproject
+              experience.frontmatter?.isSubproject
                 ? 'text-lg md:text-xl'
                 : 'text-xl md:text-3xl'
             }
           `}
         >
-          {experience.frontmatter.pageUrl && (
+          {experience.frontmatter?.pageUrl && (
             <div className="inline-block">
               <a
                 href={experience.frontmatter.pageUrl}
@@ -91,7 +91,7 @@ const Item: React.FC<Props> = ({ experience, subprojectMap }) => {
               </a>
             </div>
           )}
-          {experience.frontmatter.githubUrl && (
+          {experience.frontmatter?.githubUrl && (
             <a
               href={experience.frontmatter.githubUrl}
               className="mx-1"
@@ -104,8 +104,8 @@ const Item: React.FC<Props> = ({ experience, subprojectMap }) => {
               />
             </a>
           )}
-          {experience.frontmatter.isSubproject && ' • '}
-          {experience.frontmatter.title.map((seg, i) => (
+          {experience.frontmatter?.isSubproject && ' • '}
+          {experience.frontmatter?.title?.map((seg, i) => (
             <>
               <span className="nw" key={i}>
                 {seg}
@@ -116,12 +116,12 @@ const Item: React.FC<Props> = ({ experience, subprojectMap }) => {
         <div
           className={
             'flex items-end ' +
-            (experience.frontmatter.isSubproject ? '' : 'ml-3')
+            (experience.frontmatter?.isSubproject ? '' : 'ml-3')
           }
         >
-          {experience.frontmatter.when && (
+          {experience.frontmatter?.when && (
             <span className="font-body text-lg md:text-xl text-fill-7 whitespace-nowrap">
-              {experience.frontmatter.when}
+              {experience.frontmatter?.when}
             </span>
           )}
           <img
@@ -133,9 +133,9 @@ const Item: React.FC<Props> = ({ experience, subprojectMap }) => {
           />
         </div>
       </div>
-      {experience.frontmatter.stack && (
+      {experience.frontmatter?.stack && (
         <ul className="flex justify-end flex-wrap gap-2">
-          {experience.frontmatter.stack.map(stack => (
+          {experience.frontmatter?.stack.map(stack => (
             <li
               key={stack}
               className="rounded-full h-5 md:h-6 bg-fill-d px-3 font-body text-sm md:text-base text-fill-5"
@@ -160,12 +160,12 @@ const Item: React.FC<Props> = ({ experience, subprojectMap }) => {
               ref={fixedPartRef}
               className={
                 'items-end text-right font-body ' +
-                (experience.frontmatter.isSubproject
+                (experience.frontmatter?.isSubproject
                   ? 'text-base md:text-lg'
                   : 'text-lg md:text-xl')
               }
             >
-              {experience.frontmatter.fixedPart.map((seg, i) => (
+              {experience.frontmatter?.fixedPart?.map((seg, i) => (
                 <>
                   <span className="nw" key={i}>
                     {seg}
@@ -173,30 +173,34 @@ const Item: React.FC<Props> = ({ experience, subprojectMap }) => {
                 </>
               ))}
             </p>
-            <div
-              dangerouslySetInnerHTML={{ __html: experience.html }}
-              className={
-                'flex flex-col items-end text-right font-body underline-a ' +
-                (experience.frontmatter.isSubproject
-                  ? 'text-base md:text-lg'
-                  : 'text-lg md:text-xl')
-              }
-            />
+            {experience.html && (
+              <div
+                dangerouslySetInnerHTML={{ __html: experience.html }}
+                className={
+                  'flex flex-col items-end text-right font-body underline-a ' +
+                  (experience.frontmatter?.isSubproject
+                    ? 'text-base md:text-lg'
+                    : 'text-lg md:text-xl')
+                }
+              />
+            )}
           </div>
-          {experience.frontmatter.subprojects?.length && (
+          {experience.frontmatter?.subprojects?.length && (
             <ul className="flex flex-col items-end gap-6">
-              {experience.frontmatter.subprojects.map(projectId => {
-                const project = subprojectMap.get(projectId)
-                return (
-                  project && (
-                    <Item
-                      key={projectId}
-                      experience={project}
-                      subprojectMap={subprojectMap}
-                    />
+              {experience.frontmatter.subprojects
+                .filter(Boolean)
+                .map(projectId => {
+                  const project = subprojectMap.get(projectId!)
+                  return (
+                    project && (
+                      <Item
+                        key={projectId}
+                        experience={project}
+                        subprojectMap={subprojectMap}
+                      />
+                    )
                   )
-                )
-              })}
+                })}
             </ul>
           )}
         </div>

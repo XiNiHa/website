@@ -6,27 +6,8 @@ import Section from '../components/experiences/Section'
 import Item from '../components/experiences/Item'
 import SEO from '../components/SEO'
 
-type DataProps = {
-  experiences: {
-    nodes: Experience[]
-  }
-}
-
-export type Experience = {
-  fileAbsolutePath: string
-  frontmatter: {
-    title: string[]
-    pageUrl?: string
-    githubUrl?: string
-    order?: number
-    when?: string
-    stack?: string[]
-    subprojects?: string[]
-    isSubproject?: boolean
-    fixedPart: string[]
-  }
-  html: string
-}
+export type Experience =
+  Queries.ExperiencesPageQuery['experiences']['nodes'][number]
 
 const getDirectParentDir = (path: string) => /\/([^/]*)\/[^/]*$/.exec(path)?.[1]
 
@@ -40,17 +21,18 @@ const sectionOrder = [
   'Education',
 ]
 
-const ExperiencesPage: React.FC<PageProps<DataProps> & TransitionProps> = ({
-  data,
-  transitionStatus,
-}) => {
+const ExperiencesPage: React.FC<
+  PageProps<Queries.ExperiencesPageQuery> & TransitionProps
+> = ({ data, transitionStatus }) => {
   const subprojects = data.experiences.nodes.filter(
-    item => item.frontmatter.isSubproject
+    item => item.frontmatter?.isSubproject
   )
 
   const subprojectMap = new Map<string, Experience>()
   for (const subproject of subprojects) {
-    const id = getFilenameWithoutExt(subproject.fileAbsolutePath)
+    const id =
+      subproject.fileAbsolutePath &&
+      getFilenameWithoutExt(subproject.fileAbsolutePath)
     if (id) {
       subprojectMap.set(id, subproject)
     }
@@ -58,8 +40,10 @@ const ExperiencesPage: React.FC<PageProps<DataProps> & TransitionProps> = ({
 
   const sectionsMap = new Map<string, Experience[]>()
   for (const experience of data.experiences.nodes) {
-    if (!experience.frontmatter.isSubproject) {
-      const sectionTitle = getDirectParentDir(experience.fileAbsolutePath)
+    if (!experience.frontmatter?.isSubproject) {
+      const sectionTitle =
+        experience.fileAbsolutePath &&
+        getDirectParentDir(experience.fileAbsolutePath)
       if (sectionTitle) {
         let section = sectionsMap.get(sectionTitle)
         if (!section) {
@@ -74,8 +58,8 @@ const ExperiencesPage: React.FC<PageProps<DataProps> & TransitionProps> = ({
   for (const experiences of Array.from(sectionsMap.values())) {
     experiences.sort(
       (a, b) =>
-        (a.frontmatter.order ?? Number.MAX_SAFE_INTEGER) -
-        (b.frontmatter.order ?? Number.MAX_SAFE_INTEGER)
+        (a.frontmatter?.order ?? Number.MAX_SAFE_INTEGER) -
+        (b.frontmatter?.order ?? Number.MAX_SAFE_INTEGER)
     )
   }
 
@@ -92,7 +76,7 @@ const ExperiencesPage: React.FC<PageProps<DataProps> & TransitionProps> = ({
           <Section key={title} title={title}>
             {experiences.map(experience => (
               <Item
-                key={experience.frontmatter.title.join(' ')}
+                key={experience.frontmatter?.title?.join(' ')}
                 experience={experience}
                 subprojectMap={subprojectMap}
               />
@@ -107,7 +91,7 @@ const ExperiencesPage: React.FC<PageProps<DataProps> & TransitionProps> = ({
 export default ExperiencesPage
 
 export const query = graphql`
-  query {
+  query ExperiencesPage {
     experiences: allMarkdownRemark(
       filter: { fileAbsolutePath: { regex: "//experiences//" } }
     ) {
