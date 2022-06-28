@@ -8,7 +8,7 @@ subprojects:
   - welcoachV1_2
 fixedPart:
   - AI 헬스케어 스타트업인 뉴트리션코트에서
-  - 백엔드 개발자로 근무하였습니다.
+  - 백엔드 개발자로 근무 중입니다.
 ---
 
 <span class="nw">퇴사 후, 회사에 기존에 계시던</span>
