@@ -16,6 +16,7 @@ export type Experience = {
   fileAbsolutePath: string
   frontmatter: {
     title: string[]
+    pageUrl?: string
     githubUrl?: string
     order?: number
     when?: string
@@ -114,6 +115,7 @@ export const query = graphql`
         fileAbsolutePath
         frontmatter {
           title: title_
+          pageUrl
           githubUrl
           order
           when

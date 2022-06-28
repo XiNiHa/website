@@ -1,6 +1,7 @@
 ---
 title_:
   - Vilay
+pageUrl: https://vilay.xiniha.dev
 githubUrl: https://github.com/XiNiHa/vilay
 order: 1
 when: 2022.01 ~
