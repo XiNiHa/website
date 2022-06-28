@@ -2,8 +2,7 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
   mode: 'jit',
-  purge: ['./src/**/*.{js,jsx,ts,tsx}'],
-  darkMode: false,
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     fontSize: {
       sm: '14px',
