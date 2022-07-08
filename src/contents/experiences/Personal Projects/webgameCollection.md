@@ -2,7 +2,7 @@
 title_:
   - Webgame Collection
 githubUrl: https://github.com/XiNiHa/webgame-collection-api
-order: 2
+order: 3
 when: 2021 ~ WIP
 stack:
   - Rust

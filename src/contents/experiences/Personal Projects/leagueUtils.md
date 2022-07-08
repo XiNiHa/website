@@ -3,7 +3,7 @@ title_:
   - 리그 오브 레전드
   - 관련 유틸리티
 githubUrl: https://github.com/XiNiHa/ruliweb-lol-manual-manager
-order: 8
+order: 9
 when: 2018.07 ~ 2018.09
 stack:
   - JavaScript
