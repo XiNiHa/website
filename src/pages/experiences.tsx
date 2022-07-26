@@ -74,11 +74,12 @@ const ExperiencesPage: React.FC<
       <div className="flex flex-col items-end gap-10">
         {sectionArr.map(([title, experiences]) => (
           <Section key={title} title={title}>
-            {experiences.map(experience => (
+            {experiences.map((experience, index) => (
               <Item
                 key={experience.frontmatter?.title?.join(' ')}
                 experience={experience}
                 subprojectMap={subprojectMap}
+                expandedByDefault={index === 0}
               />
             ))}
           </Section>

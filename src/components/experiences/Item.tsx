@@ -6,10 +6,15 @@ import SmoothIcon from '../SmoothIcon'
 type Props = {
   experience: Experience
   subprojectMap: Map<string, Experience>
+  expandedByDefault: boolean
 }
 
-const Item: React.FC<Props> = ({ experience, subprojectMap }) => {
-  const [expanded, setExpanded] = React.useState(false)
+const Item: React.FC<Props> = ({
+  experience,
+  subprojectMap,
+  expandedByDefault,
+}) => {
+  const [expanded, setExpanded] = React.useState(expandedByDefault)
   const prevExpanded = usePrevious(expanded)
   const [fixedPartHeight, setFixedPartHeight] = React.useState(0)
   const [contentHeight, setContentHeight] = React.useState(0)
@@ -58,7 +63,7 @@ const Item: React.FC<Props> = ({ experience, subprojectMap }) => {
     >
       <div
         className={
-          'flex justify-end items-stretch hover:cursor-pointer sm:flex-nowrap ' +
+          'flex justify-end items-stretch cursor-pointer mb-1 transition-colors duration-300 border-b border-b-transparent hover:border-b-gray-400 sm:flex-nowrap ' +
           (experience.frontmatter?.isSubproject ? '' : 'flex-wrap')
         }
         onClick={() => setExpanded(prev => !prev)}
@@ -188,19 +193,20 @@ const Item: React.FC<Props> = ({ experience, subprojectMap }) => {
           {experience.frontmatter?.subprojects?.length && (
             <ul className="flex flex-col items-end gap-6">
               {experience.frontmatter.subprojects
-                .filter(Boolean)
-                .map(projectId => {
-                  const project = subprojectMap.get(projectId!)
+                .map((projectId, index) => {
+                  const project = projectId && subprojectMap.get(projectId)
                   return (
                     project && (
                       <Item
                         key={projectId}
                         experience={project}
                         subprojectMap={subprojectMap}
+                        expandedByDefault={index === 0}
                       />
                     )
                   )
-                })}
+                })
+                .filter(Boolean)}
             </ul>
           )}
         </div>
