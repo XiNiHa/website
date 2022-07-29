@@ -1,10 +1,15 @@
 {
   "compilerOptions": {
-    "target": "es2020",
+    "target": "ESNext",
+    "module": "ESNext",
     "moduleResolution": "Node",
+    "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
-    "jsx": "preserve"
-  },
-  "include": ["./src/**/*"]
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js",
+    "paths": {
+      "@components/*": ["src/components/*"]
+    }
+  }
 }
