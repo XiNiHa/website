@@ -477,7 +477,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@iconify/types@npm:^1.1.0":
+"@iconify-json/bi@npm:^1.1.6":
+  version: 1.1.6
+  resolution: "@iconify-json/bi@npm:1.1.6"
+  dependencies:
+    "@iconify/types": "*"
+  checksum: 450916eac2d58af562e1bb2ca6f707c8058733ff86adaa5dc902c89dc69fc3ea81fa70122f5b7bd92135ff775ad3fcb17c0b3ef6f1ec97d97626e11d1cc099d2
+  languageName: node
+  linkType: hard
+
+"@iconify/types@npm:*, @iconify/types@npm:^1.1.0":
   version: 1.1.0
   resolution: "@iconify/types@npm:1.1.0"
   checksum: beffcdbf14e879ff74e79ac29ea0f4f4874f9df632f1994d97395b3f05cbeebaf10f1abc73cf850dc7444924cd57ed92e0e2ca55bacfe3374eff7542d489fbd0
@@ -653,6 +662,26 @@ __metadata:
     estree-walker: ^2.0.1
     picomatch: ^2.2.2
   checksum: 6bc41f22b1a0f1efec3043899e4d3b6b1497b3dea4d94292d8f83b4cf07a1073ecbaedd562a22d11913ff7659f459677b01b09e9598a98936e746780ecc93a12
+  languageName: node
+  linkType: hard
+
+"@solid-primitives/intersection-observer@npm:^1.4.0":
+  version: 1.4.0
+  resolution: "@solid-primitives/intersection-observer@npm:1.4.0"
+  dependencies:
+    "@solid-primitives/utils": ^2.1.1
+  peerDependencies:
+    solid-js: ^1.4.4
+  checksum: 10d625411a8ad31603c79e628b9bae710bb70287155c6b7f45e651b91b3e2d1994bbf3fc6486ad0063eac509c2053ccc06a4fbe5352c811eb23cd1a2e7ac9e3e
+  languageName: node
+  linkType: hard
+
+"@solid-primitives/utils@npm:^2.1.1":
+  version: 2.2.1
+  resolution: "@solid-primitives/utils@npm:2.2.1"
+  peerDependencies:
+    solid-js: ^1.4.1
+  checksum: 9510b55a7c54f9e3ece8504e7f3d60d09dcc5337ad611614bddec8af6f4f5b67606b3a801ca61c2d76fa2e117521bbd4d35cac94095091ba2564c621e13e3a3d
   languageName: node
   linkType: hard
 
@@ -5963,6 +5992,8 @@ __metadata:
   resolution: "website@workspace:."
   dependencies:
     "@astrojs/solid-js": ^0.4.1
+    "@iconify-json/bi": ^1.1.6
+    "@solid-primitives/intersection-observer": ^1.4.0
     "@unocss/reset": ^0.44.7
     astro: ^1.0.0-rc.2
     prettier: ^2.7.1

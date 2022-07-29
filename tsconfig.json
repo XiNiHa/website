@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "Node",
@@ -9,7 +10,7 @@
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
     "paths": {
-      "@components/*": ["src/components/*"]
+      "@/*": ["src/*"]
     }
   }
 }
