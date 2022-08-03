@@ -14,7 +14,9 @@ const text = [
     {text.map(segments => (
       <p>
         {segments.map(seg => (
-          <span class="whitespace-nowrap">{seg}</span>
+          <>
+            <span class="whitespace-nowrap">{seg}</span>{' '}
+          </>
         ))}
       </p>
     ))}
