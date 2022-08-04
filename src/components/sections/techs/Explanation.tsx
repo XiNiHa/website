@@ -1,4 +1,11 @@
-import { batch, Component, createEffect, createReaction, createSignal, onMount, untrack } from 'solid-js'
+import {
+  batch,
+  Component,
+  createEffect,
+  createSignal,
+  onMount,
+  untrack,
+} from 'solid-js'
 import { activeTech, setActiveTech } from '@/state/tech'
 
 interface Props {
@@ -9,8 +16,7 @@ interface Props {
 const Explanation: Component<Props> = ({ initialItem, explanations }) => {
   const [textA, setTextA] = createSignal('')
   const [textB, setTextB] = createSignal('')
-  const [textAHeight, setTextAHeight] = createSignal(0)
-  const [textBHeight, setTextBHeight] = createSignal(0)
+  const [maxHeight, setMaxHeight] = createSignal(0)
   const [activeText, setActiveText] = createSignal<'a' | 'b'>('a')
 
   onMount(() => setActiveTech(initialItem))
@@ -59,15 +65,16 @@ const Explanation: Component<Props> = ({ initialItem, explanations }) => {
     />
   ) as HTMLElement
 
-  createReaction(() => {
-    batch(() => {
-      setTextAHeight(textAEl.clientHeight)
-      setTextBHeight(textBEl.clientHeight)
-    })
-  })(() => (textA(), textB()))
+  createEffect(() => {
+    activeText()
+    setMaxHeight(v => Math.max(v, textAEl.clientHeight, textBEl.clientHeight))
+  })
 
   return (
-    <div style={{ height: Math.max(textAHeight(), textBHeight()) + 'px' }} class="transition-all duration-500">
+    <div
+      style={{ height: maxHeight() + 'px' }}
+      class="transition-all duration-500"
+    >
       {textAEl}
       {textBEl}
     </div>
