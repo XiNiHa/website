@@ -1,16 +1,19 @@
-import { batch, Component, createEffect, createReaction, createSignal, untrack } from 'solid-js'
-import { activeTech } from '@/state/tech'
+import { batch, Component, createEffect, createReaction, createSignal, onMount, untrack } from 'solid-js'
+import { activeTech, setActiveTech } from '@/state/tech'
 
 interface Props {
+  initialItem: string
   explanations: Record<string, string>
 }
 
-const Explanation: Component<Props> = ({ explanations }) => {
+const Explanation: Component<Props> = ({ initialItem, explanations }) => {
   const [textA, setTextA] = createSignal('')
   const [textB, setTextB] = createSignal('')
   const [textAHeight, setTextAHeight] = createSignal(0)
   const [textBHeight, setTextBHeight] = createSignal(0)
   const [activeText, setActiveText] = createSignal<'a' | 'b'>('a')
+
+  onMount(() => setActiveTech(initialItem))
 
   createEffect(() => {
     const currTech = activeTech()
