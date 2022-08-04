@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@iconify-json/bi": "^1.1.6",
+    "@rollup/plugin-yaml": "^3.1.0",
     "@solid-primitives/intersection-observer": "^1.4.0",
     "@unocss/reset": "^0.44.7",
     "astro": "^1.0.0-rc.2",

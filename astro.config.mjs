@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config'
 import solid from '@astrojs/solid-js'
+import yaml from '@rollup/plugin-yaml'
 import unocss from 'unocss/vite'
 import { presetUno, presetIcons, transformerVariantGroup } from 'unocss'
 
@@ -7,6 +8,7 @@ import { presetUno, presetIcons, transformerVariantGroup } from 'unocss'
 export default defineConfig({
   vite: {
     plugins: [
+      yaml(),
       unocss({
         presets: [presetUno(), presetIcons()],
         transformers: [transformerVariantGroup()],

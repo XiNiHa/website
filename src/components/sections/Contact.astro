@@ -1,0 +1,27 @@
+---
+import Section from '@/components/Section'
+import SmoothIcon from '@/components/SmoothIcon';
+import contactData from '@/contents/contact.yaml'
+---
+
+<Section id="contact" title="Contact" class="h-80vh" client:idle>
+  <ul class="flex flex-col text-xl md:text-3xl text-#555 py-10 gap-2">
+    {contactData.contacts.filter(Boolean).map((contact: any) => (
+      <li class="flex items-center">
+        {contact!.iconUrl && contact!.iconAlt && (
+          <SmoothIcon
+            client:visible
+            iconUrl={contact!.iconUrl}
+            iconAlt={contact!.iconAlt}
+            class="w-6 h-6 mr-3"
+          />
+        )}
+        {contact!.href && contact!.text && (
+          <a href={contact!.href} class="hover:underline">
+            {contact!.text}
+          </a>
+        )}
+      </li>
+    ))}
+  </ul>
+</Section>
