@@ -29,5 +29,8 @@
     "type": "git",
     "url": "https://github.com/XiNiHa/website"
   },
-  "packageManager": "yarn@3.2.2"
+  "packageManager": "yarn@3.2.2",
+  "resolutions": {
+    "@unocss/vite@0.44.7": "patch:@unocss/vite@npm:0.44.7#.yarn/patches/@unocss-vite-npm-0.44.7-8389f82eb1.patch"
+  }
 }
