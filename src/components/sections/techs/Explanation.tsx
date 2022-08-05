@@ -73,7 +73,7 @@ const Explanation: Component<Props> = ({ initialItem, explanations }) => {
   return (
     <div
       style={{ height: maxHeight() + 'px' }}
-      class="transition-all duration-500"
+      class="transition-all duration-500 print:hidden"
     >
       {textAEl}
       {textBEl}

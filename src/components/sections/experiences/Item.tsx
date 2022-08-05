@@ -60,7 +60,7 @@ const Item: Component<Props> = ({ experience, subprojectMap }) => {
 
   return (
     <li
-      class={'flex flex-col ' + (experience.stack ? 'gap-1' : 'gap-1 md:gap-2')}
+      class={'flex flex-col ' + (experience.stack ? 'gap-1' : 'gap-1 xl:gap-2')}
     >
       <div
         class="flex items-center gap-2 cursor-pointer w-fit mb-1 transition-colors duration-300 border-b border-b-transparent hover:border-b-gray-400 sm:flex-nowrap"
@@ -69,15 +69,21 @@ const Item: Component<Props> = ({ experience, subprojectMap }) => {
       >
         <h3
           class={`
-            text-#333 flex flex-wrap items-center gap-2
+            relative text-#333 flex flex-wrap items-center gap-2
             ${
               experience.isSubproject
-                ? 'text-lg md:text-xl'
-                : 'text-xl md:text-3xl'
+                ? 'text-lg xl:text-xl'
+                : 'text-xl xl:text-3xl'
             }
           `}
         >
-          {experience.isSubproject ? ' • ' : ' - '}
+          <Show
+            when={experience.isSubproject}
+            fallback={<span class="absolute -left-7 -lt-xl:left-4 top-0"> - </span>}
+          >
+            {' '}
+            •{' '}
+          </Show>
           <For each={experience.title}>
             {seg => (
               <>
@@ -96,7 +102,7 @@ const Item: Component<Props> = ({ experience, subprojectMap }) => {
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
-                class="bi bi-house-door-fill w-5 h-5 md:w-6 md:h-6 inline-block"
+                class="bi bi-house-door-fill w-5 h-5 xl:w-6 xl:h-6 inline-block"
                 viewBox="0 0 16 16"
               >
                 <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z" />
@@ -114,7 +120,7 @@ const Item: Component<Props> = ({ experience, subprojectMap }) => {
               <SmoothIcon
                 iconUrl="https://cdn.svgporn.com/logos/github-icon.svg"
                 iconAlt="Github Icon"
-                class="w-5 md:w-6 inline-block"
+                class="w-5 xl:w-6 inline-block"
               />
             </a>
           </Show>
@@ -123,7 +129,7 @@ const Item: Component<Props> = ({ experience, subprojectMap }) => {
           class="flex items-center"
           classList={{ 'ml-3': experience.isSubproject }}
         >
-          <span class="text-lg md:text-xl text-#777 whitespace-nowrap">
+          <span class="text-lg xl:text-xl text-#777 whitespace-nowrap">
             {experience.when}
           </span>
           <img
@@ -140,7 +146,7 @@ const Item: Component<Props> = ({ experience, subprojectMap }) => {
         <ul class="flex flex-wrap gap-2">
           <For each={experience.stack}>
             {stack => (
-              <li class="rounded-full h-5 md:h-6 bg-#ddd px-3 text-sm md:text-base text-#555">
+              <li class="rounded-full h-5 xl:h-6 bg-#ddd px-3 text-sm xl:text-base text-#555">
                 {stack}
               </li>
             )}
@@ -164,8 +170,8 @@ const Item: Component<Props> = ({ experience, subprojectMap }) => {
               ref={fixedPartRef}
               class={
                 experience.isSubproject
-                  ? 'text-base md:text-lg'
-                  : 'text-lg md:text-xl'
+                  ? 'text-base xl:text-lg'
+                  : 'text-lg xl:text-xl'
               }
             >
               <For each={experience.fixedPart}>
@@ -182,8 +188,8 @@ const Item: Component<Props> = ({ experience, subprojectMap }) => {
                 class={
                   'flex flex-col font-body underline-a ' +
                   (experience.isSubproject
-                    ? 'text-base md:text-lg'
-                    : 'text-lg md:text-xl')
+                    ? 'text-base xl:text-lg'
+                    : 'text-lg xl:text-xl')
                 }
               />
             </Show>
