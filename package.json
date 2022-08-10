@@ -17,7 +17,8 @@
     "@solid-primitives/intersection-observer": "^1.4.0",
     "@unocss/reset": "^0.44.7",
     "astro": "^1.0.0-rc.2",
-    "unocss": "^0.44.7"
+    "astro-uno": "^0.1.5",
+    "unocss": "^0.45.5"
   },
   "devDependencies": {
     "@astrojs/solid-js": "^0.4.1",
@@ -30,8 +31,5 @@
     "type": "git",
     "url": "https://github.com/XiNiHa/website"
   },
-  "packageManager": "yarn@3.2.2",
-  "resolutions": {
-    "@unocss/vite@0.44.7": "patch:@unocss/vite@npm:0.44.7#.yarn/patches/@unocss-vite-npm-0.44.7-8389f82eb1.patch"
-  }
+  "packageManager": "yarn@3.2.2"
 }
