@@ -12,22 +12,9 @@ export default defineConfig({
   integrations: [
     solid(),
     unocss({
+      include: ['src/**/*'],
       presets: [presetUno(), presetIcons()],
       transformers: [transformerVariantGroup()],
-      /*
-      extractors: [
-        {
-          extract: ({ code }) =>
-            new Set(
-              code
-                .split(/[(\s'"`;=)]|(?:\\")+/g)
-                .filter(v =>
-                  /(?!\d|-{2}|-\d)[a-zA-Z0-9\u00A0-\uFFFF-_:%-?]/.test(v)
-                )
-            ),
-        },
-      ],
-      */
     }),
   ],
 })

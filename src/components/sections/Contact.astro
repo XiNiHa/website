@@ -8,7 +8,8 @@ import contactData from '@/contents/contact.yaml'
   <ul class="flex flex-col text-xl xl:text-3xl text-#555 py-10 gap-2">
     {contactData.contacts.filter(Boolean).map((contact: any) => (
       <li class="flex items-center">
-        {contact!.iconUrl && contact!.iconAlt && (
+        {contact.iconClass && <i class={contact.iconClass + ' mr-2'} />}
+        {contact.iconUrl && contact.iconAlt && (
           <SmoothIcon
             client:visible
             iconUrl={contact!.iconUrl}
@@ -16,7 +17,7 @@ import contactData from '@/contents/contact.yaml'
             class="w-6 h-6 mr-3"
           />
         )}
-        {contact!.href && contact!.text && (
+        {contact.href && contact.text && (
           <a href={contact!.href} class="hover:underline">
             {contact!.text}
           </a>

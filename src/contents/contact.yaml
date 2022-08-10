@@ -1,16 +1,13 @@
 contacts:
-  - iconUrl: https://raw.githubusercontent.com/twbs/icons/main/icons/envelope.svg
-    iconAlt: Email Icon
+  - iconClass: i-bi-envelope
     href: mailto:me@xiniha.dev
     text: me@xiniha.dev
 
-  - iconUrl: https://cdn.svgporn.com/logos/github-icon.svg
-    iconAlt: GitHub Icon
+  - iconClass: i-bi-github
     href: https://github.com/XiNiHa
     text: "@XiNiHa"
 
-  - iconUrl: https://raw.githubusercontent.com/twbs/icons/main/icons/twitter.svg
-    iconAlt: Twitter Icon
+  - iconClass: i-bi-twitter
     href: https://twitter.com/xiniha_1e88df
     text: "@xiniha_1e88df"
 

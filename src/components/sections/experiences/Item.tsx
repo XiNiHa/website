@@ -105,14 +105,7 @@ const Item: Component<Props> = ({ experience, subprojectMap }) => {
               class="mx-1 h-fit leading-1 print:hidden"
               onClick={e => e.stopPropagation()}
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                class="bi bi-house-door-fill w-5 h-5 xl:w-6 xl:h-6 inline-block"
-                viewBox="0 0 16 16"
-              >
-                <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z" />
-              </svg>
+              <i class="i-bi-house-door-fill w-5 h-5 xl:w-6 xl:h-6 inline-block" />
             </a>
           </Show>
           <Show when={experience.githubUrl}>
@@ -123,11 +116,7 @@ const Item: Component<Props> = ({ experience, subprojectMap }) => {
               class="mx-1 h-fit flex print:hidden"
               onClick={e => e.stopPropagation()}
             >
-              <SmoothIcon
-                iconUrl="https://cdn.svgporn.com/logos/github-icon.svg"
-                iconAlt="Github Icon"
-                class="w-5 xl:w-6 inline-block"
-              />
+              <i class="i-bi-github text-xl xl:text-2xl" />
             </a>
           </Show>
         </h3>
@@ -138,9 +127,8 @@ const Item: Component<Props> = ({ experience, subprojectMap }) => {
           <span class="text-lg xl:text-xl text-#777 whitespace-nowrap">
             {experience.when}
           </span>
-          <img
-            src="https://raw.githubusercontent.com/twbs/icons/main/icons/chevron-right.svg"
-            class="p-1.5 transition-transform duration-500 print:hidden"
+          <i
+            class="i-bi-chevron-right mx-2 transition-transform duration-500 print:hidden"
             classList={{
               'rotate-90': expanded(),
               'rotate-0': !expanded(),
