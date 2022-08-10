@@ -28,9 +28,9 @@ const Section: Component<Props> = ({
   ...attrs
 }) => {
   const section = (
-    <section {...attrs} class={cls + ' py-28 flex flex-col'}>
+    <section {...attrs} class={cls + ' py-28 print:py-6'}>
       <h2 class="text-3xl pl-4 border-l-4 border-l-gray-600">{title}</h2>
-      <div class="flex-1">{children}</div>
+      <div>{children}</div>
     </section>
   ) as HTMLElement
 

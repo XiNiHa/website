@@ -6,3 +6,9 @@ html, body {
 * {
   word-break: keep-all;
 }
+
+@media print {
+  @page {
+    size: A4 portrait;
+  }
+}

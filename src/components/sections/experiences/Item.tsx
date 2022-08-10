@@ -60,7 +60,11 @@ const Item: Component<Props> = ({ experience, subprojectMap }) => {
 
   return (
     <li
-      class={'flex flex-col ' + (experience.stack ? 'gap-1' : 'gap-1 xl:gap-2')}
+      class="flex flex-col gap-1 print:break-inside-avoid-page"
+      classList={{
+        'xl:gap-2': !experience.stack,
+        'my-5': !experience.isSubproject,
+      }}
     >
       <div
         class="flex items-center gap-2 cursor-pointer w-fit mb-1 transition-colors duration-300 border-b border-b-transparent hover:border-b-gray-400 sm:flex-nowrap"
@@ -79,7 +83,9 @@ const Item: Component<Props> = ({ experience, subprojectMap }) => {
         >
           <Show
             when={experience.isSubproject}
-            fallback={<span class="absolute -left-7 -lt-xl:left-4 top-0"> - </span>}
+            fallback={
+              <span class="absolute -left-7 -lt-xl:left-4 top-0"> - </span>
+            }
           >
             {' '}
             •{' '}
@@ -96,7 +102,7 @@ const Item: Component<Props> = ({ experience, subprojectMap }) => {
               href={experience.pageUrl}
               target="_blank"
               rel="noopener noreferrer"
-              class="mx-1 h-fit leading-1"
+              class="mx-1 h-fit leading-1 print:hidden"
               onClick={e => e.stopPropagation()}
             >
               <svg
@@ -114,7 +120,7 @@ const Item: Component<Props> = ({ experience, subprojectMap }) => {
               href={experience.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              class="mx-1 h-fit flex"
+              class="mx-1 h-fit flex print:hidden"
               onClick={e => e.stopPropagation()}
             >
               <SmoothIcon
@@ -134,7 +140,7 @@ const Item: Component<Props> = ({ experience, subprojectMap }) => {
           </span>
           <img
             src="https://raw.githubusercontent.com/twbs/icons/main/icons/chevron-right.svg"
-            class="p-1.5 transition-transform duration-500"
+            class="p-1.5 transition-transform duration-500 print:hidden"
             classList={{
               'rotate-90': expanded(),
               'rotate-0': !expanded(),
@@ -155,7 +161,7 @@ const Item: Component<Props> = ({ experience, subprojectMap }) => {
       </Show>
       <div
         ref={wrapperRef}
-        class="overflow-hidden"
+        class="overflow-hidden print:overflow-visible !print:h-auto"
         classList={{
           'transition-all': isExpansionRender(),
           'duration-500': isExpansionRender(),

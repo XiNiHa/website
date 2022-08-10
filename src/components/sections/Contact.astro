@@ -4,7 +4,7 @@ import SmoothIcon from '@/components/SmoothIcon';
 import contactData from '@/contents/contact.yaml'
 ---
 
-<Section id="contact" title="Contact" class="h-80vh" client:idle>
+<Section id="contact" title="Contact" class="h-80vh print:break-before-page" client:idle>
   <ul class="flex flex-col text-xl xl:text-3xl text-#555 py-10 gap-2">
     {contactData.contacts.filter(Boolean).map((contact: any) => (
       <li class="flex items-center">

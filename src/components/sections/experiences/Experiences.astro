@@ -66,10 +66,10 @@ openSourceContributions.sort((a, b) => a.frontmatter.order - b.frontmatter.order
 education.sort((a, b) => a.frontmatter.order - b.frontmatter.order)
 ---
 
-<Section id="experiences" title="Experiences" class="min-h-120vh" client:idle>
-  <div class="py-6 flex flex-col gap-14">
-    <p class="px-6 py-4 rounded-xl bg-gray-200 text-xl text-#333 w-fit">각 항목을 클릭하면 상세 내용이 표시됩니다.</p>
-    <Subsection title="Work Experiences">
+<Section id="experiences" title="Experiences" class="min-h-120vh print:break-before-page" client:idle>
+  <div class="py-6">
+    <p class="my-4 px-6 py-4 rounded-xl bg-gray-200 text-xl text-#333 w-fit print:hidden">각 항목을 클릭하면 상세 내용이 표시됩니다.</p>
+    <Subsection title="Work Experiences" first>
       {workExperiences.map(({ frontmatter, content }, index) => (
         <Item
           client:visible

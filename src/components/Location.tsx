@@ -36,7 +36,7 @@ const Location: Component<Props> = ({ hash, children }) => {
     <div class="relative">
       <div class="absolute inset-0 pointer-events-none flex items-center overflow-hidden">
         <div
-          class="i-bi-chevron-right transition-transform duration-500"
+          class="i-bi-chevron-right transition-transform duration-500 print:hidden"
           classList={{ '-translate-x-full': !active() }}
         />
       </div>
