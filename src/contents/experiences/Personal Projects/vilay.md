@@ -29,10 +29,14 @@ fixedPart:
 <span class="nw">적절한 SSR 프레임워크를 찾다가,</span>
 <span class="nw">Relay와 사용하기에 최적의 프레임워크를</span>
 <span class="nw">찾지 못해서 직접 만들게 되었으며,</span>
-<span class="nw">현재 개발 중인 신규 제품에</span>
+<span class="nw">회사에서 개발한 신규 제품에도</span>
 <span class="nw">실제로 적용하여 사용 중입니다.</span>
 
 <span class="nw">Cloudflare Workers 등</span>
 <span class="nw">엣지 런타임 환경에서도 잘 동작하며,</span>
 <span class="nw">추후 Selective Hydration 등의</span>
 <span class="nw">고급 SSR 테크닉들도 적용할 예정입니다.</span>
+
+<span class="nw">최근에는 다양한 경로에서</span>
+<span class="nw">협업이나 사용 관련 문의나,</span>
+<span class="nw">오픈소스 기여 역시 받고 있습니다.</span>
