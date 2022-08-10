@@ -118,10 +118,7 @@ const Item: Component<Props> = ({ experience, subprojectMap }) => {
             </a>
           </Show>
         </h3>
-        <div
-          class="flex items-center"
-          classList={{ 'ml-3': experience.isSubproject }}
-        >
+        <div class="flex items-center">
           <span class="text-lg xl:text-xl text-#777 whitespace-nowrap">
             {experience.when}
           </span>
