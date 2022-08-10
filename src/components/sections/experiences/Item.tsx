@@ -1,12 +1,14 @@
+import { createWithPrevious } from '@/common/createWithPrevious'
 import {
   batch,
+  createEffect,
+  createMemo,
   createSignal,
   For,
   onMount,
   Show,
   type Component,
 } from 'solid-js'
-import SmoothIcon from '@/components/SmoothIcon'
 import { Experience } from './experience'
 
 type Props = {
@@ -15,8 +17,7 @@ type Props = {
 }
 
 const Item: Component<Props> = ({ experience, subprojectMap }) => {
-  const [expanded, setExpandedImpl] = createSignal(false)
-  const [prevExpanded, setPrevExpanded] = createSignal(expanded())
+  const [expanded, prevExpanded, setExpanded] = createWithPrevious(false)
   const [fixedPartHeight, setFixedPartHeight] = createSignal(0)
   const [contentHeight, setContentHeight] = createSignal(0)
   const [transitionEnded, setTransitionEnded] = createSignal(true)
@@ -25,38 +26,36 @@ const Item: Component<Props> = ({ experience, subprojectMap }) => {
   let fixedPartRef: HTMLDivElement | undefined = undefined
   let contentRef: HTMLDivElement | undefined = undefined
 
-  const observer = new ResizeObserver(() => {
+  createEffect(() => {
+    const _ = expanded()
+    setTransitionEnded(false)
+  })
+
+  const updateHeights = () => {
     batch(() => {
       if (fixedPartRef) setFixedPartHeight(fixedPartRef.clientHeight)
       if (contentRef) setContentHeight(contentRef.clientHeight)
     })
-  })
+  }
+
+  const observer = new ResizeObserver(updateHeights)
+
   onMount(() => {
-    batch(() => {
-      if (fixedPartRef) {
-        setFixedPartHeight(fixedPartRef.clientHeight)
-        observer.observe(fixedPartRef)
-      }
-      if (contentRef) {
-        setContentHeight(contentRef.clientHeight)
-        observer.observe(contentRef)
-      }
-    })
+    if (fixedPartRef) observer.observe(fixedPartRef)
+    if (contentRef) observer.observe(contentRef)
+
+    updateHeights()
     wrapperRef?.addEventListener('transitionend', () =>
       setTransitionEnded(true)
     )
   })
 
-  const setExpanded = (...args: Parameters<typeof setExpandedImpl>) => {
-    batch(() => {
-      setTransitionEnded(false)
-      setPrevExpanded(expanded())
-      setExpandedImpl(...args)
-    })
-  }
-
-  const isExpansionRender = () =>
-    prevExpanded() !== expanded() && !transitionEnded()
+  const isExpansionRender = createMemo(
+    () => prevExpanded() !== expanded() && !transitionEnded()
+  )
+  const wrapperHeight = createMemo(() =>
+    expanded() ? contentHeight() : fixedPartHeight()
+  )
 
   return (
     <li
@@ -87,8 +86,7 @@ const Item: Component<Props> = ({ experience, subprojectMap }) => {
               <span class="absolute -left-7 -lt-xl:left-4 top-0"> - </span>
             }
           >
-            {' '}
-            •{' '}
+            •
           </Show>
           <For each={experience.title}>
             {seg => (
@@ -154,9 +152,7 @@ const Item: Component<Props> = ({ experience, subprojectMap }) => {
           'transition-all': isExpansionRender(),
           'duration-500': isExpansionRender(),
         }}
-        style={{
-          height: (expanded() ? contentHeight() : fixedPartHeight()) + 'px',
-        }}
+        style={{ height: wrapperHeight() + 'px' }}
       >
         <div ref={contentRef} class="flex flex-col gap-6">
           <div>

@@ -62,87 +62,87 @@ const workSubprojectsMap = new Map<string, Experience>(
 workExperiences.sort((a, b) => a.frontmatter.order - b.frontmatter.order)
 workSubprojects.sort((a, b) => a.frontmatter.order - b.frontmatter.order)
 personalProjects.sort((a, b) => a.frontmatter.order - b.frontmatter.order)
-openSourceContributions.sort((a, b) => a.frontmatter.order - b.frontmatter.order)
+openSourceContributions.sort(
+  (a, b) => a.frontmatter.order - b.frontmatter.order
+)
 education.sort((a, b) => a.frontmatter.order - b.frontmatter.order)
+
+const markdownToExperience = ({
+  frontmatter,
+  content,
+  isSubproject,
+}: {
+  frontmatter: Record<string, any>
+  content: string
+  isSubproject?: boolean
+}) => ({
+  title: frontmatter.title_,
+  order: frontmatter.order,
+  when: frontmatter.when,
+  isSubproject: !!isSubproject,
+  subprojects: frontmatter.subprojects,
+  stack: frontmatter.stack,
+  pageUrl: frontmatter.pageUrl,
+  githubUrl: frontmatter.githubUrl,
+  fixedPart: frontmatter.fixedPart,
+  content,
+})
 ---
 
-<Section id="experiences" title="Experiences" class="min-h-120vh print:break-before-page" client:idle>
+<Section
+  id="experiences"
+  title="Experiences"
+  class="min-h-120vh print:break-before-page"
+  client:idle
+>
   <div class="py-6">
-    <p class="my-4 px-6 py-4 rounded-xl bg-gray-200 text-xl text-#333 w-fit print:hidden">각 항목을 클릭하면 상세 내용이 표시됩니다.</p>
+    <p
+      class="my-4 px-6 py-4 rounded-xl bg-gray-200 text-xl text-#333 w-fit print:hidden"
+    >
+      각 항목을 클릭하면 상세 내용이 표시됩니다.
+    </p>
     <Subsection title="Work Experiences" first>
-      {workExperiences.map(({ frontmatter, content }, index) => (
+      {workExperiences.map(({ frontmatter, content }) => (
         <Item
           client:visible
-          experience={{
-            title: frontmatter.title_,
-            order: frontmatter.order,
-            when: frontmatter.when,
-            isSubproject: false,
-            subprojects: frontmatter.subprojects,
-            stack: frontmatter.stack,
-            pageUrl: frontmatter.pageUrl,
-            githubUrl: frontmatter.githubUrl,
-            fixedPart: frontmatter.fixedPart,
+          experience={markdownToExperience({
+            frontmatter,
             content,
-          }}
+          })}
           subprojectMap={new Map(workSubprojectsMap.entries())}
         />
       ))}
     </Subsection>
     <Subsection title="Personal Projects">
-      {personalProjects.map(({ frontmatter, content }, index) => (
+      {personalProjects.map(({ frontmatter, content }) => (
         <Item
           client:visible
-          experience={{
-            title: frontmatter.title_,
-            order: frontmatter.order,
-            when: frontmatter.when,
-            isSubproject: false,
-            subprojects: frontmatter.subprojects,
-            stack: frontmatter.stack,
-            pageUrl: frontmatter.pageUrl,
-            githubUrl: frontmatter.githubUrl,
-            fixedPart: frontmatter.fixedPart,
+          experience={markdownToExperience({
+            frontmatter,
             content,
-          }}
+          })}
         />
       ))}
     </Subsection>
     <Subsection title="Open Source Contributions">
-      {openSourceContributions.map(({ frontmatter, content }, index) => (
+      {openSourceContributions.map(({ frontmatter, content }) => (
         <Item
           client:visible
-          experience={{
-            title: frontmatter.title_,
-            order: frontmatter.order,
-            when: frontmatter.when,
-            isSubproject: false,
-            subprojects: frontmatter.subprojects,
-            stack: frontmatter.stack,
-            pageUrl: frontmatter.pageUrl,
-            githubUrl: frontmatter.githubUrl,
-            fixedPart: frontmatter.fixedPart,
+          experience={markdownToExperience({
+            frontmatter,
             content,
-          }}
+          })}
         />
       ))}
     </Subsection>
     <Subsection title="Education">
-      {education.map(({ frontmatter, content }, index) => (
+      {education.map(({ frontmatter, content }) => (
         <Item
           client:visible
-          experience={{
-            title: frontmatter.title_,
-            order: frontmatter.order,
-            when: frontmatter.when,
-            isSubproject: false,
-            subprojects: frontmatter.subprojects,
-            stack: frontmatter.stack,
-            pageUrl: frontmatter.pageUrl,
-            githubUrl: frontmatter.githubUrl,
-            fixedPart: frontmatter.fixedPart,
+          experience={markdownToExperience({
+            frontmatter,
             content,
-          }}
+          })}
         />
       ))}
     </Subsection>
