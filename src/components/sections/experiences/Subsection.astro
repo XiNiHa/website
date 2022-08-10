@@ -1,0 +1,17 @@
+---
+export interface Props {
+  title: string
+  first?: boolean
+}
+
+const { title, first } = Astro.props as Props
+---
+
+<div class={first ? null : "my-14 print:break-before-page"}>
+  <h2 class="mb-5 text-#333 text-2xl leading-[1] xl:text-3xl flex items-center">
+    {title}
+  </h2>
+  <ul>
+    <slot />
+  </ul>
+</div>

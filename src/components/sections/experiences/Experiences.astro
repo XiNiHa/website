@@ -1,0 +1,150 @@
+---
+import { MarkdownInstance } from 'astro'
+import Section from '@/components/Section'
+import Subsection from './Subsection.astro'
+import Item from './Item'
+import type { Experience } from './experience'
+
+const compileMdContents = (mds: MarkdownInstance<Record<string, any>>[]) =>
+  Promise.all(
+    mds.map(async md => ({ ...md, content: await md.compiledContent() }))
+  )
+
+const [
+  workExperiences,
+  workSubprojects,
+  personalProjects,
+  openSourceContributions,
+  education,
+] = await Promise.all([
+  Astro.glob('../../../contents/experiences/Work Experiences/*.md').then(
+    compileMdContents
+  ),
+  Astro.glob(
+    '../../../contents/experiences/Work Experiences/subprojects/*.md'
+  ).then(compileMdContents),
+  Astro.glob('../../../contents/experiences/Personal Projects/*.md').then(
+    compileMdContents
+  ),
+  Astro.glob(
+    '../../../contents/experiences/Open Source Contributions/*.md'
+  ).then(compileMdContents),
+  Astro.glob('../../../contents/experiences/Education/*.md').then(
+    compileMdContents
+  ),
+])
+
+const workSubprojectsMap = new Map<string, Experience>(
+  workSubprojects
+    .map(({ frontmatter, content, file }) => {
+      const id = file.split('/').at(-1)?.replace('.md', '')
+      return (
+        id &&
+        ([
+          id,
+          {
+            title: frontmatter.title_,
+            order: frontmatter.order,
+            when: frontmatter.when,
+            isSubproject: true,
+            stack: frontmatter.stack,
+            pageUrl: frontmatter.pageUrl,
+            githubUrl: frontmatter.githubUrl,
+            fixedPart: frontmatter.fixedPart,
+            content,
+          },
+        ] as const)
+      )
+    })
+    .filter(Boolean) as [string, Experience][]
+)
+
+workExperiences.sort((a, b) => a.frontmatter.order - b.frontmatter.order)
+workSubprojects.sort((a, b) => a.frontmatter.order - b.frontmatter.order)
+personalProjects.sort((a, b) => a.frontmatter.order - b.frontmatter.order)
+openSourceContributions.sort((a, b) => a.frontmatter.order - b.frontmatter.order)
+education.sort((a, b) => a.frontmatter.order - b.frontmatter.order)
+---
+
+<Section id="experiences" title="Experiences" class="min-h-120vh print:break-before-page" client:idle>
+  <div class="py-6">
+    <p class="my-4 px-6 py-4 rounded-xl bg-gray-200 text-xl text-#333 w-fit print:hidden">각 항목을 클릭하면 상세 내용이 표시됩니다.</p>
+    <Subsection title="Work Experiences" first>
+      {workExperiences.map(({ frontmatter, content }, index) => (
+        <Item
+          client:visible
+          experience={{
+            title: frontmatter.title_,
+            order: frontmatter.order,
+            when: frontmatter.when,
+            isSubproject: false,
+            subprojects: frontmatter.subprojects,
+            stack: frontmatter.stack,
+            pageUrl: frontmatter.pageUrl,
+            githubUrl: frontmatter.githubUrl,
+            fixedPart: frontmatter.fixedPart,
+            content,
+          }}
+          subprojectMap={new Map(workSubprojectsMap.entries())}
+        />
+      ))}
+    </Subsection>
+    <Subsection title="Personal Projects">
+      {personalProjects.map(({ frontmatter, content }, index) => (
+        <Item
+          client:visible
+          experience={{
+            title: frontmatter.title_,
+            order: frontmatter.order,
+            when: frontmatter.when,
+            isSubproject: false,
+            subprojects: frontmatter.subprojects,
+            stack: frontmatter.stack,
+            pageUrl: frontmatter.pageUrl,
+            githubUrl: frontmatter.githubUrl,
+            fixedPart: frontmatter.fixedPart,
+            content,
+          }}
+        />
+      ))}
+    </Subsection>
+    <Subsection title="Open Source Contributions">
+      {openSourceContributions.map(({ frontmatter, content }, index) => (
+        <Item
+          client:visible
+          experience={{
+            title: frontmatter.title_,
+            order: frontmatter.order,
+            when: frontmatter.when,
+            isSubproject: false,
+            subprojects: frontmatter.subprojects,
+            stack: frontmatter.stack,
+            pageUrl: frontmatter.pageUrl,
+            githubUrl: frontmatter.githubUrl,
+            fixedPart: frontmatter.fixedPart,
+            content,
+          }}
+        />
+      ))}
+    </Subsection>
+    <Subsection title="Education">
+      {education.map(({ frontmatter, content }, index) => (
+        <Item
+          client:visible
+          experience={{
+            title: frontmatter.title_,
+            order: frontmatter.order,
+            when: frontmatter.when,
+            isSubproject: false,
+            subprojects: frontmatter.subprojects,
+            stack: frontmatter.stack,
+            pageUrl: frontmatter.pageUrl,
+            githubUrl: frontmatter.githubUrl,
+            fixedPart: frontmatter.fixedPart,
+            content,
+          }}
+        />
+      ))}
+    </Subsection>
+  </div>
+</Section>

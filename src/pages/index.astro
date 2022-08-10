@@ -1,0 +1,20 @@
+---
+import Layout from '@/components/Layout.astro'
+import About from '@/components/sections/About.astro'
+import Techs from '@/components/sections/techs/Techs.astro'
+import Experiences from '@/components/sections/experiences/Experiences.astro'
+import Contact from '@/components/sections/Contact.astro'
+---
+
+<Layout>
+  <p
+    class="my-4 px-10 py-4 rounded-xl bg-gray-200 text-xl text-#333 w-full text-center hidden print:block"
+  >
+    웹사이트 버전을 사용하시면 더욱 최신의 정보와 다양한 추가 컨텐츠를<br />편리한 인터페이스로 확인하실 수 있습니다.<br />
+    <a href="https://xiniha.dev">https://xiniha.dev</a>
+  </p>
+  <About />
+  <Techs />
+  <Experiences />
+  <Contact />
+</Layout>

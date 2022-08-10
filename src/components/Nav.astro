@@ -1,0 +1,27 @@
+---
+import Location from '@/components/Location'
+
+const links = {
+  '#about': 'About me',
+  '#techs': 'Techs I use & love',
+  '#experiences': 'Experiences',
+  '#contact': 'Contact',
+}
+---
+
+<nav class="pl-4 border-l border-l-gray-400">
+  <ul>
+    {Object.entries(links).map(([href, text]) => (
+      <li>
+        <Location hash={href} client:visible>
+          <a
+            href={href}
+            class="ml-6 w-fit text-2xl leading-[1.6] border-b border-b-transparent transition-all duration-500 hover:(border-b-gray-700)"
+          >
+            {text}
+          </a>
+        </Location>
+      </li>
+    ))}
+  </ul>
+</nav>

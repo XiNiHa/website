@@ -6,6 +6,8 @@ order: 2
 when: 2021.10 ~
 subprojects:
   - welcoachV1_2
+  - welcoachV2_BE
+  - welcoachV2_FE
 fixedPart:
   - AI 헬스케어 스타트업인 뉴트리션코트에서
   - 백엔드 개발자로 근무 중입니다.
@@ -18,5 +20,6 @@ fixedPart:
 
 <span class="nw">포지션은 백엔드 개발자이지만,</span>
 <span class="nw">모바일 앱을 유지보수하거나</span>
-<span class="nw">프론트엔드 신입 교육을 담당하는 등</span>
+<span class="nw">프론트엔드 신입 교육을 담당하고</span>
+<span class="nw">업무를 분배하여 함께 진행하는 등</span>
 <span class="nw">풀스택 개발 업무를 진행했습니다.</span>

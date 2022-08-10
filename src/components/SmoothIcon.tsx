@@ -1,28 +1,31 @@
-import * as React from 'react'
+import { Component, createSignal, onMount } from "solid-js";
 
-type Props = {
+interface Props {
   iconUrl: string
   iconAlt: string
-  className?: string
+  class?: string
   iconClassName?: string
 }
 
-const SmoothIcon: React.FC<Props> = ({ iconUrl, iconAlt, className }) => {
-  const [visible, setVisible] = React.useState(false)
+const SmoothIcon: Component<Props> = ({ iconUrl, iconAlt, class: cls, iconClassName }) => {
+  const [visible, setVisible] = createSignal(false)
 
-  React.useEffect(() => {
+  onMount(() => {
     const image = new Image()
     image.addEventListener('load', () => setVisible(true))
     image.src ||= iconUrl
-  }, [])
+  })
 
   return (
-    <span className={className}>
+    <span class={cls}>
       <img
-        src={visible ? iconUrl : undefined}
+        src={visible() ? iconUrl : undefined}
         alt={iconAlt}
-        className="h-full transition-opacity duration-500"
-        style={{ opacity: visible ? 1 : 0 }}
+        class={'h-full transition-opacity duration-500 ' + iconClassName}
+        classList={{
+          'opacity-0': !visible(),
+          'opacity-100': visible()
+        }}
       />
     </span>
   )
