@@ -9,6 +9,7 @@ stack:
   - Relay
   - Vite
   - WindiCSS
+  - Astro
 fixedPart:
   - Shopify 기반 이커머스
   - 구현 단계에서 요구된
