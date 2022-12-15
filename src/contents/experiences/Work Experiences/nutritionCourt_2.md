@@ -3,14 +3,14 @@ title_:
   - Backend Developer @
   - NutritionCourt
 order: 2
-when: 2021.10 ~
+when: 2021.10 ~ 2022.10
 subprojects:
   - welcoachV1_2
   - welcoachV2_BE
   - welcoachV2_FE
 fixedPart:
   - AI 헬스케어 스타트업인 뉴트리션코트에서
-  - 백엔드 개발자로 근무 중입니다.
+  - 백엔드 개발자로 근무했습니다.
 ---
 
 <span class="nw">퇴사 후, 회사에 기존에 계시던</span>
