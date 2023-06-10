@@ -4,7 +4,7 @@ title_:
 pageUrl: https://vilay.xiniha.dev
 githubUrl: https://github.com/XiNiHa/vilay
 order: 1
-when: 2022.01 ~
+when: 2022.01 ~ 2022.08
 stack:
   - TypeScript
   - Vite
@@ -37,6 +37,10 @@ fixedPart:
 <span class="nw">추후 Selective Hydration 등의</span>
 <span class="nw">고급 SSR 테크닉들도 적용할 예정입니다.</span>
 
-<span class="nw">최근에는 다양한 경로에서</span>
-<span class="nw">협업이나 사용 관련 문의나,</span>
-<span class="nw">오픈소스 기여 역시 받고 있습니다.</span>
+<span class="nw">과거에는 다양한 경로에서</span>
+<span class="nw">협업/사용 관련 문의나</span>
+<span class="nw">오픈소스 기여 역시 받고 있었으나,</span>
+<span class="nw">해당 프레임워크를 사용하는</span>
+<span class="nw">프로젝트를 더 이상 진행하지</span>
+<span class="nw">않게 됨에 따라</span>
+<span class="nw">현재는 아카이브 처리한 상태입니다.</span>

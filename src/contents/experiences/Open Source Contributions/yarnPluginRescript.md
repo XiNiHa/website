@@ -3,7 +3,7 @@ title_:
   - reason-seoul /
   - yarn-plugin-rescript
 githubUrl: https://github.com/reason-seoul/yarn-plugin-rescript
-order: 3
+order: 4
 when: "2021 ~"
 stack:
   - TypeScript

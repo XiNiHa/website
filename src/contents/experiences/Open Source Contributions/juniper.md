@@ -3,7 +3,7 @@ title_:
   - graphql-rust /
   - juniper
 githubUrl: https://github.com/graphql-rust/juniper
-order: 5
+order: 6
 when: "2021.03"
 stack:
   - Rust

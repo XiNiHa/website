@@ -3,7 +3,7 @@ title_:
   - zth /
   - graphql-client-example-server
 githubUrl: https://github.com/zth/graphql-client-example-server
-order: 1
+order: 2
 when: "2022 ~"
 stack:
   - TypeScript

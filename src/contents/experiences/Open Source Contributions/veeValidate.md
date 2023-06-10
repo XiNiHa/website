@@ -3,7 +3,7 @@ title_:
   - logaretm /
   - vee-validate
 githubUrl: https://github.com/logaretm/vee-validate
-order: 6
+order: 7
 when: "2020.10"
 stack:
   - TypeScript

@@ -3,7 +3,7 @@ title_:
   - async-graphql /
   - async-graphql
 githubUrl: https://github.com/async-graphql/async-graphql
-order: 4
+order: 5
 when: '2021.06'
 stack:
   - Rust
