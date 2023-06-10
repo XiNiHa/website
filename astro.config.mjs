@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config'
 import solid from '@astrojs/solid-js'
 import yaml from '@rollup/plugin-yaml'
-import unocss from 'astro-uno'
+import unocss from 'unocss/astro'
 import { presetUno, presetIcons, transformerVariantGroup } from 'unocss'
 
 // https://astro.build/config
@@ -12,7 +12,11 @@ export default defineConfig({
   integrations: [
     solid(),
     unocss({
-      include: ['src/**/*'],
+      content: {
+        pipeline: {
+          include: ['src/**/*'],
+        },
+      },
       presets: [presetUno(), presetIcons()],
       transformers: [transformerVariantGroup()],
     }),
