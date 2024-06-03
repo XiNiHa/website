@@ -4,7 +4,7 @@ title_:
   - yarn-plugin-rescript
 githubUrl: https://github.com/reason-seoul/yarn-plugin-rescript
 order: 4
-when: "2021 ~"
+when: '2021 ~'
 stack:
   - TypeScript
   - Yarn 2

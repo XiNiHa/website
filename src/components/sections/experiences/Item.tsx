@@ -22,9 +22,9 @@ const Item: Component<Props> = ({ experience, subprojectMap }) => {
   const [contentHeight, setContentHeight] = createSignal(0)
   const [transitionEnded, setTransitionEnded] = createSignal(true)
 
-  let wrapperRef: HTMLElement | undefined = undefined
-  let fixedPartRef: HTMLDivElement | undefined = undefined
-  let contentRef: HTMLDivElement | undefined = undefined
+  let wrapperRef = undefined as HTMLDivElement | undefined
+  let fixedPartRef = undefined as HTMLDivElement | undefined
+  let contentRef = undefined as HTMLDivElement | undefined
 
   createEffect(() => {
     const _ = expanded()
@@ -38,23 +38,22 @@ const Item: Component<Props> = ({ experience, subprojectMap }) => {
     })
   }
 
-  const observer = new ResizeObserver(updateHeights)
-
   onMount(() => {
+    const observer = new ResizeObserver(updateHeights)
     if (fixedPartRef) observer.observe(fixedPartRef)
     if (contentRef) observer.observe(contentRef)
 
     updateHeights()
     wrapperRef?.addEventListener('transitionend', () =>
-      setTransitionEnded(true)
+      setTransitionEnded(true),
     )
   })
 
   const isExpansionRender = createMemo(
-    () => prevExpanded() !== expanded() && !transitionEnded()
+    () => prevExpanded() !== expanded() && !transitionEnded(),
   )
   const wrapperHeight = createMemo(() =>
-    expanded() ? contentHeight() : fixedPartHeight()
+    expanded() ? contentHeight() : fixedPartHeight(),
   )
 
   return (

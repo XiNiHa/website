@@ -46,7 +46,7 @@ const Section: Component<Props> = ({
         }
       }
     },
-    { rootMargin: '0px 0px -80%' }
+    { rootMargin: '0px 0px -80%' },
   )
 
   return section

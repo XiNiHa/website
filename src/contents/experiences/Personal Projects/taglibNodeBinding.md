@@ -3,7 +3,7 @@ title_:
   - taglib-node-binding
 githubUrl: https://github.com/XiNiHa/taglib-node-binding
 order: 8
-when: "2019.09"
+when: '2019.09'
 stack:
   - TypeScript
   - C++

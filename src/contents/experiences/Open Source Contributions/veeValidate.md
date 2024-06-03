@@ -4,7 +4,7 @@ title_:
   - vee-validate
 githubUrl: https://github.com/logaretm/vee-validate
 order: 7
-when: "2020.10"
+when: '2020.10'
 stack:
   - TypeScript
   - Vue.js 2

@@ -1,9 +1,9 @@
 ---
-title_: 
+title_:
   - Lang-Helper
 githubUrl: https://github.com/XiNiHa/lang-helper
 order: 2
-when: "2020.12, 2022.07~"
+when: '2020.12, 2022.07~'
 stack:
   - ReScript
   - React

@@ -4,7 +4,7 @@ title_:
   - graphql-client-example-server
 githubUrl: https://github.com/zth/graphql-client-example-server
 order: 2
-when: "2022 ~"
+when: '2022 ~'
 stack:
   - TypeScript
   - GraphQL Yoga

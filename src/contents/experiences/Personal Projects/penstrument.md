@@ -3,7 +3,7 @@ title_:
   - Penstrument
 githubUrl: https://github.com/XiNiHa/Penstrument
 order: 6
-when: "2020.06"
+when: '2020.06'
 stack:
   - C#
   - WinUI 3

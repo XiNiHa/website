@@ -18,7 +18,7 @@ const Location: Component<Props> = ({ hash, children }) => {
   onMount(() => {
     createEffect(() => setActive(globalHash() === hash))
     const anchor = document.querySelector(
-      `a[href="${hash}"]`
+      `a[href="${hash}"]`,
     ) as HTMLElement | null
     anchor?.addEventListener('click', e => {
       e.preventDefault()

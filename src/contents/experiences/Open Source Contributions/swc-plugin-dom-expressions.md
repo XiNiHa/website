@@ -4,7 +4,7 @@ title_:
   - swc-plugin-jsx-dom-expressions
 githubUrl: https://github.com/modderme123/swc-plugin-jsx-dom-expressions
 order: 1
-when: "2023"
+when: '2023'
 stack:
   - Rust
   - swc

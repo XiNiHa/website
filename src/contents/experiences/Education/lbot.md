@@ -41,4 +41,3 @@ fixedPart:
 
 <span class="nw">중•고등학교 모두 검정고시를 통해</span>
 <span class="nw">학력을 인정받았습니다.</span>
-

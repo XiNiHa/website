@@ -1,4 +1,4 @@
-import { Component, createSignal, onMount } from "solid-js";
+import { Component, createSignal, onMount } from 'solid-js'
 
 interface Props {
   iconUrl: string
@@ -7,7 +7,12 @@ interface Props {
   iconClassName?: string
 }
 
-const SmoothIcon: Component<Props> = ({ iconUrl, iconAlt, class: cls, iconClassName }) => {
+const SmoothIcon: Component<Props> = ({
+  iconUrl,
+  iconAlt,
+  class: cls,
+  iconClassName,
+}) => {
   const [visible, setVisible] = createSignal(false)
 
   onMount(() => {
@@ -24,7 +29,7 @@ const SmoothIcon: Component<Props> = ({ iconUrl, iconAlt, class: cls, iconClassN
         class={'h-full transition-opacity duration-500 ' + iconClassName}
         classList={{
           'opacity-0': !visible(),
-          'opacity-100': visible()
+          'opacity-100': visible(),
         }}
       />
     </span>

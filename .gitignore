@@ -58,6 +58,7 @@ typings/
 .DS_Store
 
 dist/
+.astro/
 
 # Yarn
 yarn-error.log
