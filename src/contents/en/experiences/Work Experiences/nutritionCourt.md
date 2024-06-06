@@ -11,4 +11,4 @@ fixedPart:
   - NutritionCourt is an AI healthcare startup that creates a personalized meal plan based on a user's health data.
 ---
 
-Due to the nature of a small startup, I also worked on various fields other than frontend.
+Due to the nature of a small startup, I also worked in various fields other than frontend.

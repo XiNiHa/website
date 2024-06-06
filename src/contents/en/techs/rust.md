@@ -11,4 +11,4 @@ Also, its powerful type system constructed with great features like traits and e
 makes the language very attractive.
 
 In addition, the macro system that is powerful and flexible<br>
-is also a wonderful feature that only few languages have.
+is also a wonderful feature that only a few languages have.

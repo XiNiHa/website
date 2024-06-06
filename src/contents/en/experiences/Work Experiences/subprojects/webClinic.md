@@ -14,7 +14,7 @@ fixedPart:
   - Rewrote a B2B product from Angular 2 to Nuxt 2.
 ---
 
-I worked on a B2B product for hospitals that includes a desktop Web UI for doctors and mobile Web app for patients.<br>
+I worked on a B2B product for hospitals that includes a desktop Web UI for doctors and a mobile Web app for patients.<br>
 The app provided end-to-end features like scheduling appointments, writing reports, scheduling blood tests,<br>
 receiving questionnaires, displaying reports, sending dosage reminders, etc.
 
