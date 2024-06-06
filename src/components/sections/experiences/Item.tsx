@@ -131,7 +131,7 @@ const Item: Component<Props> = ({ experience, subprojectMap }) => {
         </div>
       </div>
       <Show when={experience.stack}>
-        <ul class="flex flex-wrap gap-2">
+        <ul class="flex flex-wrap gap-2 mb-1">
           <For each={experience.stack}>
             {stack => (
               <li class="rounded-full h-5 xl:h-6 bg-#ddd px-3 text-sm xl:text-base text-#555">
@@ -150,7 +150,7 @@ const Item: Component<Props> = ({ experience, subprojectMap }) => {
         }}
         style={{ height: wrapperHeight() + 'px' }}
       >
-        <div ref={contentRef} class="flex flex-col gap-6">
+        <div ref={contentRef} class="flex flex-col gap-6 lt-lg:[&_br]:hidden">
           <div>
             <p
               ref={fixedPartRef}

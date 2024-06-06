@@ -1,6 +1,12 @@
 ---
 import Location from '@/components/Location'
 
+interface Props {
+  lang?: string
+}
+
+const { lang = 'ko' } = Astro.props
+
 const links = {
   '#about': 'About me',
   '#techs': 'Techs I use & love',
@@ -30,18 +36,18 @@ const links = {
         target="_blank"
         rel="noopener noreferrer"
       >
-        코드 확인하기
+        {lang === "ko" ? "코드 확인하기" : "View source"}
         <div class="inline-block i-bi-github" />
       </a>
     </li>
     <li class="my-2 print:hidden">
       <a
-        href="/신의하_이력서.pdf"
+        href={lang === "ko" ? "/신의하_이력서.pdf" : "/Iha_Shin_Resume.pdf"}
         class="ml-6 inline-block text-gray-500 hover:underline"
         target="_blank"
         rel="noopener noreferrer"
       >
-        PDF 버전 보기
+        {lang === "ko" ? "PDF 버전 보기" : "View PDF"}
         <div class="inline-block i-bi-file-earmark-pdf" />
       </a>
     </li>

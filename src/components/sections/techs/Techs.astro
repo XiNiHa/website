@@ -3,26 +3,43 @@ import Section from '@/components/Section'
 import Chip from './Chip'
 import Explanation from './Explanation'
 
-const markdowns = await Astro.glob('../../../contents/techs/*.md')
+interface Props {
+  lang?: string
+}
+
+const { lang = 'ko' } = Astro.props
+
+const markdowns = await Astro.glob(`../../../contents/*/techs/*.md`).then(
+  files => files.filter(file => file.file.includes(`/${lang}/`)),
+)
 
 markdowns.sort((a, b) => a.frontmatter.order - b.frontmatter.order)
 
 const explanations = Object.fromEntries(
-  await Promise.all(
-    markdowns.map(async md => [md.frontmatter.title, await md.compiledContent()])
-  )
+  markdowns.map(md => [md.frontmatter.title, md.compiledContent()]),
 )
 ---
 
-<Section id="techs" title="Techs I use & love" class="print:break-inside-avoid-page" client:idle>
-  <ul class="flex flex-wrap gap-2 py-4">
-    {markdowns.map(md => (
-      <Chip
-        text={md.frontmatter.title}
-        iconUrl={md.frontmatter.iconUrl}
-        client:idle
-      />
-    ))}
+<Section
+  id="techs"
+  title="Techs I use & love"
+  class="print:break-inside-avoid-page"
+  client:idle
+>
+  <ul class="flex flex-wrap gap-2 py-4 max-w-700px">
+    {
+      markdowns.map(md => (
+        <Chip
+          text={md.frontmatter.title}
+          iconUrl={md.frontmatter.iconUrl}
+          client:idle
+        />
+      ))
+    }
   </ul>
-  <Explanation initialItem={markdowns[0].frontmatter.title} explanations={explanations} client:idle />
+  <Explanation
+    initialItem={markdowns[0].frontmatter.title}
+    explanations={explanations}
+    client:idle
+  />
 </Section>

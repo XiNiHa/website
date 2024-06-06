@@ -42,13 +42,15 @@ const Explanation: Component<Props> = ({ initialItem, explanations }) => {
   })
 
   const textClasses =
-    'text-xl leading-[1.8] absolute transition-all duration-500'
+    'text-xl leading-[1.8] absolute transition-all duration-500 inset-l-0 -inset-r-2'
 
   const textAEl = (
     <div
       innerHTML={textA()}
       class={textClasses}
       classList={{
+        'z-10': activeText() === 'a',
+        'pointer-events-none': activeText() !== 'a',
         'opacity-100': activeText() === 'a',
         'opacity-0': activeText() !== 'a',
       }}
@@ -59,6 +61,8 @@ const Explanation: Component<Props> = ({ initialItem, explanations }) => {
       innerHTML={textB()}
       class={textClasses}
       classList={{
+        'z-10': activeText() === 'b',
+        'pointer-events-none': activeText() !== 'b',
         'opacity-100': activeText() === 'b',
         'opacity-0': activeText() !== 'b',
       }}
@@ -67,13 +71,15 @@ const Explanation: Component<Props> = ({ initialItem, explanations }) => {
 
   createEffect(() => {
     activeText()
-    setMaxHeight(v => Math.max(v, textAEl.clientHeight, textBEl.clientHeight))
+    queueMicrotask(() =>
+      setMaxHeight(Math.max(textAEl.clientHeight, textBEl.clientHeight)),
+    )
   })
 
   return (
     <div
       style={{ height: maxHeight() + 'px' }}
-      class="transition-all duration-500 print:hidden"
+      class="transition-all duration-500 relative print:hidden lt-lg:[&_br]:hidden"
     >
       {textAEl}
       {textBEl}

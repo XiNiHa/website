@@ -2,18 +2,23 @@
 import Sidebar from '@/components/Sidebar.astro'
 import '@unocss/reset/tailwind.css'
 import '@/global.css'
+
+interface Props {
+  lang?: string
+}
+
+const { lang = 'ko' } = Astro.props
+
 ---
 
 <!DOCTYPE html>
-<html lang="ko">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>XiNiHa's Website</title>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8CRDZ1XSEN">
-
-    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8CRDZ1XSEN"></script>
     <script>
       declare global {
         interface Window {
@@ -37,7 +42,7 @@ import '@/global.css'
         <slot />
       </main>
       <div class="w-1/4 min-w-fit py-28 lt-xl:mx-auto print:py-10">
-        <Sidebar />
+        <Sidebar lang={lang} />
       </div>
     </div>
   </body>

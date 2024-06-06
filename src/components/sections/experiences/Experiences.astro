@@ -5,10 +5,16 @@ import Subsection from './Subsection.astro'
 import Item from './Item'
 import type { Experience } from './experience'
 
+interface Props {
+  lang?: string
+}
+
+const { lang = 'ko' } = Astro.props
+
 const compileMdContents = (mds: MarkdownInstance<Record<string, any>>[]) =>
-  Promise.all(
-    mds.map(async md => ({ ...md, content: await md.compiledContent() }))
-  )
+  mds
+    .filter(md => md.file.includes(`/${lang}/`))
+    .map(md => ({ ...md, content: md.compiledContent() }))
 
 const [
   workExperiences,
@@ -17,20 +23,20 @@ const [
   openSourceContributions,
   education,
 ] = await Promise.all([
-  Astro.glob('../../../contents/experiences/Work Experiences/*.md').then(
-    compileMdContents
+  Astro.glob('../../../contents/*/experiences/Work Experiences/*.md').then(
+    compileMdContents,
   ),
   Astro.glob(
-    '../../../contents/experiences/Work Experiences/subprojects/*.md'
+    '../../../contents/*/experiences/Work Experiences/subprojects/*.md',
   ).then(compileMdContents),
-  Astro.glob('../../../contents/experiences/Personal Projects/*.md').then(
-    compileMdContents
+  Astro.glob('../../../contents/*/experiences/Personal Projects/*.md').then(
+    compileMdContents,
   ),
   Astro.glob(
-    '../../../contents/experiences/Open Source Contributions/*.md'
+    '../../../contents/*/experiences/Open Source Contributions/*.md',
   ).then(compileMdContents),
-  Astro.glob('../../../contents/experiences/Education/*.md').then(
-    compileMdContents
+  Astro.glob('../../../contents/*/experiences/Education/*.md').then(
+    compileMdContents,
   ),
 ])
 
@@ -56,14 +62,14 @@ const workSubprojectsMap = new Map<string, Experience>(
         ] as const)
       )
     })
-    .filter(Boolean) as [string, Experience][]
+    .filter(Boolean) as [string, Experience][],
 )
 
 workExperiences.sort((a, b) => a.frontmatter.order - b.frontmatter.order)
 workSubprojects.sort((a, b) => a.frontmatter.order - b.frontmatter.order)
 personalProjects.sort((a, b) => a.frontmatter.order - b.frontmatter.order)
 openSourceContributions.sort(
-  (a, b) => a.frontmatter.order - b.frontmatter.order
+  (a, b) => a.frontmatter.order - b.frontmatter.order,
 )
 education.sort((a, b) => a.frontmatter.order - b.frontmatter.order)
 
@@ -99,52 +105,64 @@ const markdownToExperience = ({
     <p
       class="my-4 px-6 py-4 rounded-xl bg-gray-200 text-xl text-#333 w-fit print:hidden"
     >
-      각 항목을 클릭하면 상세 내용이 표시됩니다.
+      {
+        lang === 'ko'
+          ? '각 항목을 클릭하면 상세 내용이 표시됩니다.'
+          : 'Additional information is displayed when you click on each item.'
+      }
     </p>
     <Subsection title="Work Experiences" first>
-      {workExperiences.map(({ frontmatter, content }) => (
-        <Item
-          client:visible
-          experience={markdownToExperience({
-            frontmatter,
-            content,
-          })}
-          subprojectMap={new Map(workSubprojectsMap.entries())}
-        />
-      ))}
+      {
+        workExperiences.map(({ frontmatter, content }) => (
+          <Item
+            client:visible
+            experience={markdownToExperience({
+              frontmatter,
+              content,
+            })}
+            subprojectMap={new Map(workSubprojectsMap.entries())}
+          />
+        ))
+      }
     </Subsection>
     <Subsection title="Personal Projects">
-      {personalProjects.map(({ frontmatter, content }) => (
-        <Item
-          client:visible
-          experience={markdownToExperience({
-            frontmatter,
-            content,
-          })}
-        />
-      ))}
+      {
+        personalProjects.map(({ frontmatter, content }) => (
+          <Item
+            client:visible
+            experience={markdownToExperience({
+              frontmatter,
+              content,
+            })}
+          />
+        ))
+      }
     </Subsection>
     <Subsection title="Open Source Contributions">
-      {openSourceContributions.map(({ frontmatter, content }) => (
-        <Item
-          client:visible
-          experience={markdownToExperience({
-            frontmatter,
-            content,
-          })}
-        />
-      ))}
+      {
+        openSourceContributions.map(({ frontmatter, content }) => (
+          <Item
+            client:visible
+            experience={markdownToExperience({
+              frontmatter,
+              content,
+            })}
+          />
+        ))
+      }
     </Subsection>
     <Subsection title="Education">
-      {education.map(({ frontmatter, content }) => (
-        <Item
-          client:visible
-          experience={markdownToExperience({
-            frontmatter,
-            content,
-          })}
-        />
-      ))}
+      {
+        education.map(({ frontmatter, content }) => (
+          <Item
+            client:visible
+            experience={markdownToExperience({
+              frontmatter,
+              content,
+            })}
+          />
+        ))
+      }
     </Subsection>
   </div>
 </Section>
