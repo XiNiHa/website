@@ -1,19 +1,18 @@
 ---
 title_:
-  - 엘비오티 기독혁신스쿨
+  - LBOT Christian Innovation School
 order: 2
 when: 2014 ~ 2018
 fixedPart:
-  - 독서 중심의 기독대안학교에서 중•고등학교 통합 과정으로 졸업하였습니다.
+  - Graduated from an integrated middle and high school program at a reading-focused Christian alternative school.
 ---
 
-독서와 사회 이슈 분석을 통한 가치관 확립과, 자기주도학습 위주의 교과과정 특성상 넉넉했던 자기계발 시간이<br>
-내면과 프로그래머로서의 역량 성장에 많은 도움이 되었습니다.
+The curriculum, centered around reading and analyzing social issues to establish values and self-directed learning, provided ample time for self-development, greatly contributing to my growth both personally and as a programmer.
 
-이외에 학생들을 대상으로 소규모 코딩 스터디를 구성해 기초적인 코딩을 알려 주거나,<br>
-공식 코딩 과목에서 조교로 활동하며 뒤처지는 아이들을 돕는 등<br>
-코딩 교육 측면에서도 많은 시도와 귀중한 경험이 있었고,<br>
-비개발자들과의 개발 관련 의사소통에서 유의미한 도움을 준다고 느끼고 있습니다.
+Additionally, I organized small coding study groups to teach basic coding to students,<br>
+acted as a teaching assistant in official coding classes to help students who were falling behind,<br>
+and gained valuable experience in coding education.<br>
+This has proven to be significantly helpful in communicating development-related matters with non-developers.
 
-비인가 대안학교는 공식적인 중•고등학교로 인정되지 않기 때문에,<br>
-중•고등학교 모두 검정고시를 통해 학력을 인정받았습니다.
+Since non-accredited alternative schools are not officially recognized as middle or high schools,<br>
+I obtained my academic qualifications for both levels through the GED exams.

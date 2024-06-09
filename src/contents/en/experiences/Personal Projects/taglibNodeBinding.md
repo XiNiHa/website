@@ -11,11 +11,11 @@ stack:
   - CMake.js
   - TagLib
 fixedPart:
-  - C++의 음악 파일 태그 관리 라이브러리인 TagLib의 Node.js 바인딩입니다.
+  - Node.js binding for the C++ music file tag management library TagLib.
 ---
 
-TypeScript를 활용하여 Type Safe한 바인딩을 제작하였고,<br>
-CMake.js를 활용하여 TagLib 의존성 추가를 포함한 빌드 시스템을 구성하였으며,<br>
-최종적으로 NPM에 배포까지 성공적으로 진행하였습니다.
+I created a type-safe binding using TypeScript,<br>
+set up the build system using CMake.js, including adding the TagLib dependency,<br>
+and successfully published it on NPM.
 
-Promise 기반 API 등 많은 기능을 추가할 예정이었으나, 개인적인 흥미가 떨어져 현재 방치 상태입니다.
+Although I planned to add many features such as a Promise-based API, the project is currently on hold due to a lack of personal interest.

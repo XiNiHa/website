@@ -9,11 +9,11 @@ stack:
   - GraphQL
   - Rocket
 fixedPart:
-  - juniper는 Rust의 서버 사이드 GraphQL 프레임워크입니다.
+  - juniper is a server-side GraphQL framework for Rust.
 ---
 
-juniper는 일반적으로 다른 백엔드 프레임워크들과 함께 동작하며,<br>
-유명한 백엔드 프레임워크들에 대해 Integration 패키지를 제공하는데,<br>
-이 중 Rocket 프레임워크에 대한 Integration 패키지에서<br>
-async 지원이 포함된 최신 master 브랜치의 버전을 지원하지 않아,<br>
-해당 부분에 대한 지원을 추가하였습니다. [(#905)](https://github.com/graphql-rust/juniper/pull/905)
+juniper generally works with other backend frameworks,<br>
+providing integration packages for popular backend frameworks.<br>
+Among these, the integration package for the Rocket framework<br>
+did not support the version of the latest master branch that includes async support,<br>
+so I added support for it. [(#905)](https://github.com/graphql-rust/juniper/pull/905)
