@@ -12,12 +12,12 @@ stack:
   - FCM
   - Stripe
 fixedPart:
-  - 학교 내에서 사용할 것을 목표로 만든, 결제 시스템을 포함한 카풀 앱입니다.
+  - A carpool app with a payment system created for use within a school.
 ---
 
-Dart와 Flutter, Android 개발을 배우며 만들었으며, 각종 위젯들을 조합하여 UI를 만드는 법을 익히는 데에 많은 도움이 되었습니다.
+Created while learning Dart, Flutter, and Android development, this project was instrumental in learning how to compose UIs using various widgets.
 
-Firebase Functions를 활용한 매칭 API 작업부터, 각 카풀 구성원의 현재 위치를 표시하기 위한 Google Maps 연동과,<br>
-카풀 비용 지불을 위한 Stripe 결제 연동까지 구현했습니다.
+Implemented matching API using Firebase Functions, integrated Google Maps to display the current location of each carpool member,<br>
+and integrated Stripe for carpool fare payments.
 
-Stripe 연동과 관련된 법적인 문제(외국인)로 실제 운영은 진행하지 못했습니다.
+The app was not put into actual operation due to legal issues related to Stripe integration (foreign nationals).

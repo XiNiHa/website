@@ -12,8 +12,8 @@ stack:
   - PWA
   - Workbox
 fixedPart:
-  - 언어치료를 위한 사진 + 음성 슬라이드쇼 웹앱입니다.
+  - A web app for language therapy featuring a photo and audio slideshow.
 ---
 
-서비스 워커를 제외한 모든 코드 ReScript로 작성, Cloudflare Workers 기반 인프라를 활용한 리소스 관리 시스템 구현,<br>
-Workbox 기반 서비스 워커를 사용한 오프라인 실행을 위한 캐싱 적용 등의 특징이 있습니다.
+Written entirely in ReScript except for the service worker, implemented a resource management system using Cloudflare Workers infrastructure,<br>
+and applied caching for offline use with a Workbox-based service worker.
