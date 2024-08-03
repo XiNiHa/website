@@ -17,18 +17,20 @@ const links = {
 
 <nav class="pl-4 border-l border-l-gray-400">
   <ul>
-    {Object.entries(links).map(([href, text]) => (
-      <li>
-        <Location hash={href} client:visible>
-          <a
-            href={href}
-            class="ml-6 w-fit text-2xl leading-[1.6] border-b border-b-transparent transition-all duration-500 hover:(border-b-gray-700)"
-          >
-            {text}
-          </a>
-        </Location>
-      </li>
-    ))}
+    {
+      Object.entries(links).map(([href, text]) => (
+        <li>
+          <Location hash={href} client:visible>
+            <a
+              href={href}
+              class="ml-6 w-fit text-2xl leading-[1.6] border-b border-b-transparent transition-all duration-500 hover:(border-b-gray-700)"
+            >
+              {text}
+            </a>
+          </Location>
+        </li>
+      ))
+    }
     <li class="mt-4 mb-2">
       <a
         href="https://github.com/XiNiHa/website"
@@ -36,8 +38,16 @@ const links = {
         target="_blank"
         rel="noopener noreferrer"
       >
-        {lang === "ko" ? "코드 확인하기" : "View source"}
-        <div class="inline-block i-bi-github" />
+        {lang === 'ko' ? '코드 확인하기' : 'View source'}
+        <div class="inline-block i-bi-github"></div>
+      </a>
+    </li>
+    <li class="my-2">
+      <a
+        href={lang === 'ko' ? '/en' : '/'}
+        class="ml-6 inline-block text-gray-500 hover:underline"
+      >
+        {lang === 'ko' ? 'View in English 🇺🇸' : '한국어로 보기 🇰🇷'}
       </a>
     </li>
     <!-- <li class="my-2 print:hidden">
