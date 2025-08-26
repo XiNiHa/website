@@ -1,7 +1,7 @@
 ---
 title_:
   - Backend Developer @ NutritionCourt
-order: 2
+order: 3
 when: 2021.10 ~ 2022.10
 subprojects:
   - welcoachV1_2

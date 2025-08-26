@@ -1,8 +1,8 @@
 ---
 title_:
   - DX Engineer @ PortOne
-order: 1
-when: 2022.10 ~
+order: 2
+when: 2022.10 ~ 2024.07
 subprojects:
   - sdkDrivers
   - analytics
