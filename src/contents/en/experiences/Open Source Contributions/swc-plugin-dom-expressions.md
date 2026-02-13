@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - modderme123 / swc-plugin-jsx-dom-expressions
 githubUrl: https://github.com/modderme123/swc-plugin-jsx-dom-expressions
 order: 1

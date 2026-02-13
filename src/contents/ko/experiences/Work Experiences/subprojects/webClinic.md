@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - Angular 기반 프로젝트 Nuxt로 재작성
 isSubproject: true
 stack:

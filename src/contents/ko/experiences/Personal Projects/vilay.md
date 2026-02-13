@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - Vilay
 pageUrl: https://vilay.xiniha.dev
 githubUrl: https://github.com/XiNiHa/vilay

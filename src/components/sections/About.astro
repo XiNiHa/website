@@ -25,15 +25,17 @@ const text = lang === 'ko' ? textKo : textEn
 
 <Section id="about" title="About me" client:idle>
   <div class="py-4 text-xl leading-[1.8]">
-    {text.map(segments => (
-      <p>
-        {segments.map(seg => (
-          <>
-            <span class="whitespace-nowrap">{seg}</span>{' '}
-          </>
-        ))}
-      </p>
-    ))}
+    {
+      text.map(segments => (
+        <p>
+          {segments.map(seg => (
+            <>
+              <span class="whitespace-nowrap">{seg}</span>{' '}
+            </>
+          ))}
+        </p>
+      ))
+    }
   </div>
 </Section>
 

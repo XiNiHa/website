@@ -1,4 +1,4 @@
-import { createWithPrevious } from '@/common/createWithPrevious'
+import type { CollectionEntry } from 'astro:content'
 import {
   batch,
   createEffect,
@@ -9,14 +9,15 @@ import {
   Show,
   type Component,
 } from 'solid-js'
-import { Experience } from './experience'
+import { createWithPrevious } from '@/common/createWithPrevious'
 
 type Props = {
-  experience: Experience
-  subprojectMap?: Map<string, Experience>
+  experience: CollectionEntry<'experiences'>
+  isSubproject?: boolean
+  subprojectMap?: Map<string, CollectionEntry<'experiences'>>
 }
 
-const Item: Component<Props> = ({ experience, subprojectMap }) => {
+const Item: Component<Props> = props => {
   const [expanded, prevExpanded, setExpanded] = createWithPrevious(false)
   const [fixedPartHeight, setFixedPartHeight] = createSignal(0)
   const [contentHeight, setContentHeight] = createSignal(0)
@@ -60,43 +61,39 @@ const Item: Component<Props> = ({ experience, subprojectMap }) => {
     <li
       class="flex flex-col gap-1 print:break-inside-avoid-page"
       classList={{
-        'xl:gap-2': !experience.stack,
-        'my-5': !experience.isSubproject,
+        'xl:gap-2': !props.experience.data.stack,
+        'my-5': !props.isSubproject,
       }}
     >
       <div
         class="flex items-center gap-2 cursor-pointer w-fit mb-1 transition-colors duration-300 border-b border-b-transparent hover:border-b-gray-400 sm:flex-nowrap"
-        classList={{ 'flex-wrap': !experience.isSubproject }}
+        classList={{ 'flex-wrap': !props.isSubproject }}
         onClick={() => setExpanded(prev => !prev)}
       >
         <h3
           class={`
             relative text-#333 flex flex-wrap items-center gap-2
-            ${
-              experience.isSubproject
-                ? 'text-lg xl:text-xl'
-                : 'text-xl xl:text-3xl'
-            }
+            ${props.isSubproject ? 'text-lg xl:text-xl' : 'text-xl xl:text-3xl'}
           `}
         >
           <Show
-            when={experience.isSubproject}
+            when={props.isSubproject}
             fallback={
               <span class="absolute -left-7 -lt-xl:left-4 top-0"> - </span>
             }
           >
             •
           </Show>
-          <For each={experience.title}>
+          <For each={props.experience.data.title}>
             {seg => (
               <>
                 <span class="nw">{seg}</span>{' '}
               </>
             )}
           </For>
-          <Show when={experience.pageUrl}>
+          <Show when={props.experience.data.pageUrl}>
             <a
-              href={experience.pageUrl}
+              href={props.experience.data.pageUrl}
               target="_blank"
               rel="noopener noreferrer"
               class="mx-1 h-fit leading-1 print:hidden"
@@ -105,9 +102,9 @@ const Item: Component<Props> = ({ experience, subprojectMap }) => {
               <i class="i-bi-house-door-fill w-5 h-5 xl:w-6 xl:h-6 inline-block" />
             </a>
           </Show>
-          <Show when={experience.githubUrl}>
+          <Show when={props.experience.data.githubUrl}>
             <a
-              href={experience.githubUrl}
+              href={props.experience.data.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
               class="mx-1 h-fit flex print:hidden"
@@ -119,7 +116,7 @@ const Item: Component<Props> = ({ experience, subprojectMap }) => {
         </h3>
         <div class="flex items-center">
           <span class="text-lg xl:text-xl text-#777 whitespace-nowrap">
-            {experience.when}
+            {props.experience.data.when}
           </span>
           <i
             class="i-bi-chevron-right mx-2 transition-transform duration-500 print:hidden"
@@ -130,9 +127,9 @@ const Item: Component<Props> = ({ experience, subprojectMap }) => {
           />
         </div>
       </div>
-      <Show when={experience.stack}>
+      <Show when={props.experience.data.stack}>
         <ul class="flex flex-wrap gap-2 mb-1">
-          <For each={experience.stack}>
+          <For each={props.experience.data.stack}>
             {stack => (
               <li class="rounded-full h-5 xl:h-6 bg-#ddd px-3 text-sm xl:text-base text-#555">
                 {stack}
@@ -155,12 +152,12 @@ const Item: Component<Props> = ({ experience, subprojectMap }) => {
             <p
               ref={fixedPartRef}
               class={
-                experience.isSubproject
+                props.isSubproject
                   ? 'text-base xl:text-lg'
                   : 'text-lg xl:text-xl'
               }
             >
-              <For each={experience.fixedPart}>
+              <For each={props.experience.data.fixedPart}>
                 {seg => (
                   <>
                     <span class="nw">{seg}</span>{' '}
@@ -168,31 +165,26 @@ const Item: Component<Props> = ({ experience, subprojectMap }) => {
                 )}
               </For>
             </p>
-            <Show when={experience.content}>
-              <div
-                innerHTML={experience.content}
-                class={
-                  'flex flex-col font-body underline-a ' +
-                  (experience.isSubproject
-                    ? 'text-base xl:text-lg'
-                    : 'text-lg xl:text-xl')
-                }
-              />
+            <Show when={props.experience.rendered}>
+              {rendered => (
+                <div
+                  innerHTML={rendered().html}
+                  class={
+                    'flex flex-col font-body underline-a ' +
+                    (props.isSubproject
+                      ? 'text-base xl:text-lg'
+                      : 'text-lg xl:text-xl')
+                  }
+                />
+              )}
             </Show>
           </div>
-          <Show when={experience.subprojects?.length}>
+          <Show when={props.experience.data.subprojects?.length}>
             <ul class="flex flex-col gap-6">
-              <For each={experience.subprojects}>
+              <For each={props.experience.data.subprojects}>
                 {projectId => {
-                  const project = projectId && subprojectMap?.get(projectId)
-                  return (
-                    project && (
-                      <Item
-                        experience={project}
-                        subprojectMap={subprojectMap}
-                      />
-                    )
-                  )
+                  const project = props.subprojectMap?.get(projectId)
+                  return project && <Item experience={project} isSubproject />
                 }}
               </For>
             </ul>

@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - Raspberry Rice Wine
 githubUrl: https://github.com/XiNiHa/raspberry-rice-wine
 order: 5

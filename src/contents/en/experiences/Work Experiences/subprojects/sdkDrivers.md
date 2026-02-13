@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - JavaScript SDK Rework
 isSubproject: true
 stack:

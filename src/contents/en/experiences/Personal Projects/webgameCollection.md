@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - Webgame Collection
 githubUrl: https://github.com/XiNiHa/webgame-collection-api
 order: 3

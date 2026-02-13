@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - taglib-node-binding
 githubUrl: https://github.com/XiNiHa/taglib-node-binding
 order: 8

@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - Fluxus Infrastructure Rewrite
 isSubproject: true
 stack:

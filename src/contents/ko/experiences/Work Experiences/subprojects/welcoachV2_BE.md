@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - 웰코치샵 API 백엔드 개발
 isSubproject: true
 stack:

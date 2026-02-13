@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - 포트원 애널리틱스
 isSubproject: true
 stack:

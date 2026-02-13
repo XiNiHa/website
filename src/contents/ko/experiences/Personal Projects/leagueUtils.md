@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - 리그 오브 레전드 관련 유틸리티
 githubUrl: https://github.com/XiNiHa/ruliweb-lol-manual-manager
 order: 9

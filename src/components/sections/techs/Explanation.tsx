@@ -1,6 +1,6 @@
 import {
+  type Component,
   batch,
-  Component,
   createEffect,
   createSignal,
   onMount,
@@ -13,27 +13,27 @@ interface Props {
   explanations: Record<string, string>
 }
 
-const Explanation: Component<Props> = ({ initialItem, explanations }) => {
+const Explanation: Component<Props> = (props) => {
   const [textA, setTextA] = createSignal('')
   const [textB, setTextB] = createSignal('')
   const [maxHeight, setMaxHeight] = createSignal(0)
   const [activeText, setActiveText] = createSignal<'a' | 'b'>('a')
 
-  onMount(() => setActiveTech(initialItem))
+  onMount(() => setActiveTech(props.initialItem))
 
   createEffect(() => {
     const currTech = activeTech()
     untrack(() => {
-      if (currTech && currTech in explanations) {
+      if (currTech && currTech in props.explanations) {
         const currText = activeText()
         if (currText === 'a') {
           batch(() => {
-            setTextB(explanations[currTech])
+            setTextB(props.explanations[currTech])
             setActiveText('b')
           })
         } else {
           batch(() => {
-            setTextA(explanations[currTech])
+            setTextA(props.explanations[currTech])
             setActiveText('a')
           })
         }

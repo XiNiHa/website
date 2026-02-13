@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - JavaScript SDK 재설계
 isSubproject: true
 stack:

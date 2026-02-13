@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - async-graphql / async-graphql
 githubUrl: https://github.com/async-graphql/async-graphql
 order: 5

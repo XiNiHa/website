@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - Penstrument
 githubUrl: https://github.com/XiNiHa/Penstrument
 order: 6

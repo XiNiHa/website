@@ -1,9 +1,8 @@
 ---
-import { MarkdownInstance } from 'astro'
+import { type CollectionEntry, getCollection } from 'astro:content'
 import Section from '@/components/Section'
 import Subsection from './Subsection.astro'
 import Item from './Item'
-import type { Experience } from './experience'
 
 interface Props {
   lang?: string
@@ -11,88 +10,42 @@ interface Props {
 
 const { lang = 'ko' } = Astro.props
 
-const compileMdContents = (mds: MarkdownInstance<Record<string, any>>[]) =>
-  mds
-    .filter(md => md.file.includes(`/${lang}/`))
-    .map(md => ({ ...md, content: md.compiledContent() }))
+const allExperiences = await getCollection('experiences')
+const matchingExperiences = allExperiences.filter(e =>
+  e.filePath?.includes(`/${lang}/`),
+)
+const {
+  workExperiences = [],
+  workSubprojects = [],
+  personalProjects = [],
+  openSourceContributions = [],
+  education = [],
+} = Object.groupBy(matchingExperiences, e =>
+  e.filePath?.includes('/Work Experiences/subprojects/')
+    ? 'workSubprojects'
+    : e.filePath?.includes('/Work Experiences/')
+      ? 'workExperiences'
+      : e.filePath?.includes('/Personal Projects/')
+        ? 'personalProjects'
+        : e.filePath?.includes('/Open Source Contributions/')
+          ? 'openSourceContributions'
+          : 'education',
+)
 
-const [
-  workExperiences,
-  workSubprojects,
-  personalProjects,
-  openSourceContributions,
-  education,
-] = await Promise.all([
-  Astro.glob('../../../contents/*/experiences/Work Experiences/*.md').then(
-    compileMdContents,
-  ),
-  Astro.glob(
-    '../../../contents/*/experiences/Work Experiences/subprojects/*.md',
-  ).then(compileMdContents),
-  Astro.glob('../../../contents/*/experiences/Personal Projects/*.md').then(
-    compileMdContents,
-  ),
-  Astro.glob(
-    '../../../contents/*/experiences/Open Source Contributions/*.md',
-  ).then(compileMdContents),
-  Astro.glob('../../../contents/*/experiences/Education/*.md').then(
-    compileMdContents,
-  ),
-])
-
-const workSubprojectsMap = new Map<string, Experience>(
+const workSubprojectsMap = new Map<string, CollectionEntry<'experiences'>>(
   workSubprojects
-    .map(({ frontmatter, content, file }) => {
-      const id = file.split('/').at(-1)?.replace('.md', '')
-      return (
-        id &&
-        ([
-          id,
-          {
-            title: frontmatter.title_,
-            order: frontmatter.order,
-            when: frontmatter.when,
-            isSubproject: true,
-            stack: frontmatter.stack,
-            pageUrl: frontmatter.pageUrl,
-            githubUrl: frontmatter.githubUrl,
-            fixedPart: frontmatter.fixedPart,
-            content,
-          },
-        ] as const)
-      )
+    .map(e => {
+      const id = e.filePath?.split('/').at(-1)?.replace('.md', '')
+      return id ? ([id, e] as const) : null
     })
-    .filter(Boolean) as [string, Experience][],
+    .filter(v => v != null),
 )
 
-workExperiences.sort((a, b) => a.frontmatter.order - b.frontmatter.order)
-workSubprojects.sort((a, b) => a.frontmatter.order - b.frontmatter.order)
-personalProjects.sort((a, b) => a.frontmatter.order - b.frontmatter.order)
-openSourceContributions.sort(
-  (a, b) => a.frontmatter.order - b.frontmatter.order,
-)
-education.sort((a, b) => a.frontmatter.order - b.frontmatter.order)
-
-const markdownToExperience = ({
-  frontmatter,
-  content,
-  isSubproject,
-}: {
-  frontmatter: Record<string, any>
-  content: string
-  isSubproject?: boolean
-}) => ({
-  title: frontmatter.title_,
-  order: frontmatter.order,
-  when: frontmatter.when,
-  isSubproject: !!isSubproject,
-  subprojects: frontmatter.subprojects,
-  stack: frontmatter.stack,
-  pageUrl: frontmatter.pageUrl,
-  githubUrl: frontmatter.githubUrl,
-  fixedPart: frontmatter.fixedPart,
-  content,
-})
+workExperiences.sort((a, b) => a.data.order - b.data.order)
+workSubprojects.sort((a, b) => a.data.order - b.data.order)
+personalProjects.sort((a, b) => a.data.order - b.data.order)
+openSourceContributions.sort((a, b) => a.data.order - b.data.order)
+education.sort((a, b) => a.data.order - b.data.order)
 ---
 
 <Section
@@ -113,13 +66,10 @@ const markdownToExperience = ({
     </p>
     <Subsection title="Work Experiences" first>
       {
-        workExperiences.map(({ frontmatter, content }) => (
+        workExperiences.map(entry => (
           <Item
             client:visible
-            experience={markdownToExperience({
-              frontmatter,
-              content,
-            })}
+            experience={entry}
             subprojectMap={new Map(workSubprojectsMap.entries())}
           />
         ))
@@ -127,42 +77,20 @@ const markdownToExperience = ({
     </Subsection>
     <Subsection title="Personal Projects">
       {
-        personalProjects.map(({ frontmatter, content }) => (
-          <Item
-            client:visible
-            experience={markdownToExperience({
-              frontmatter,
-              content,
-            })}
-          />
+        personalProjects.map(entry => (
+          <Item client:visible experience={entry} />
         ))
       }
     </Subsection>
     <Subsection title="Open Source Contributions">
       {
-        openSourceContributions.map(({ frontmatter, content }) => (
-          <Item
-            client:visible
-            experience={markdownToExperience({
-              frontmatter,
-              content,
-            })}
-          />
+        openSourceContributions.map(entry => (
+          <Item client:visible experience={entry} />
         ))
       }
     </Subsection>
     <Subsection title="Education">
-      {
-        education.map(({ frontmatter, content }) => (
-          <Item
-            client:visible
-            experience={markdownToExperience({
-              frontmatter,
-              content,
-            })}
-          />
-        ))
-      }
+      {education.map(entry => <Item client:visible experience={entry} />)}
     </Subsection>
   </div>
 </Section>

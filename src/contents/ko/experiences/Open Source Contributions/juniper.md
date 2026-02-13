@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - graphql-rust / juniper
 githubUrl: https://github.com/graphql-rust/juniper
 order: 6

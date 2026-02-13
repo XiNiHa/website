@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - Lang-Helper
 githubUrl: https://github.com/XiNiHa/lang-helper
 order: 2

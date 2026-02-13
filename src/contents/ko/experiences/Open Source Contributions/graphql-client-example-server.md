@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - zth / graphql-client-example-server
 githubUrl: https://github.com/zth/graphql-client-example-server
 order: 2

@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - LBOT Christian Innovation School
 order: 2
 when: 2014 ~ 2018

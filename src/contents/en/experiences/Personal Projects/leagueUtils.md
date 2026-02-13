@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - League of Legends Related Utilities
 githubUrl: https://github.com/XiNiHa/ruliweb-lol-manual-manager
 order: 9

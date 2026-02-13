@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - Payment Bridge
 isSubproject: true
 stack:

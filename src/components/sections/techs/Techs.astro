@@ -1,4 +1,5 @@
 ---
+import { getCollection } from 'astro:content'
 import Section from '@/components/Section'
 import Chip from './Chip'
 import Explanation from './Explanation'
@@ -9,14 +10,15 @@ interface Props {
 
 const { lang = 'ko' } = Astro.props
 
-const markdowns = await Astro.glob(`../../../contents/*/techs/*.md`).then(
-  files => files.filter(file => file.file.includes(`/${lang}/`)),
+const allContents = await getCollection('techs')
+const matchingContents = allContents.filter(c =>
+  c.filePath?.includes(`/${lang}/`),
 )
 
-markdowns.sort((a, b) => a.frontmatter.order - b.frontmatter.order)
+matchingContents.sort((a, b) => a.data.order - b.data.order)
 
 const explanations = Object.fromEntries(
-  markdowns.map(md => [md.frontmatter.title, md.compiledContent()]),
+  matchingContents.map(c => [c.data.title, c.rendered?.html ?? '']),
 )
 ---
 
@@ -28,17 +30,13 @@ const explanations = Object.fromEntries(
 >
   <ul class="flex flex-wrap gap-2 py-4 max-w-700px">
     {
-      markdowns.map(md => (
-        <Chip
-          text={md.frontmatter.title}
-          iconUrl={md.frontmatter.iconUrl}
-          client:idle
-        />
+      matchingContents.map(c => (
+        <Chip text={c.data.title} iconUrl={c.data.iconUrl} client:idle />
       ))
     }
   </ul>
   <Explanation
-    initialItem={markdowns[0].frontmatter.title}
+    initialItem={matchingContents[0].data.title}
     explanations={explanations}
     client:idle
   />

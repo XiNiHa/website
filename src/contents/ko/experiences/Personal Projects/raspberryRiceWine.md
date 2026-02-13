@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - 복분자막걸리
 githubUrl: https://github.com/XiNiHa/raspberry-rice-wine
 order: 5

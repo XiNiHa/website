@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config'
 import solid from '@astrojs/solid-js'
 import yaml from '@rollup/plugin-yaml'
 import unocss from 'unocss/astro'
-import { presetUno, presetIcons, transformerVariantGroup } from 'unocss'
+import { presetWind3, presetIcons, transformerVariantGroup } from 'unocss'
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,7 +17,7 @@ export default defineConfig({
           include: ['src/**/*'],
         },
       },
-      presets: [presetUno(), presetIcons()],
+      presets: [presetWind3(), presetIcons()],
       transformers: [transformerVariantGroup()],
     }),
   ],
