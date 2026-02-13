@@ -29,6 +29,5 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/XiNiHa/website"
-  },
-  "packageManager": "yarn@4.2.2"
+  }
 }
