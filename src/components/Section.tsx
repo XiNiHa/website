@@ -1,11 +1,12 @@
 import {
-  Component,
+  type Component,
+  type JSX,
+  type JSXElement,
   createEffect,
   createSignal,
-  JSX,
-  JSXElement,
+  splitProps,
 } from 'solid-js'
-import { makeIntersectionObserver } from '@solid-primitives/intersection-observer'
+import { createIntersectionObserver } from '@solid-primitives/intersection-observer'
 import { setHash } from '@/state/location'
 
 interface Props extends JSX.HTMLAttributes<HTMLElement> {
@@ -21,21 +22,18 @@ createEffect(() => {
   if (last) setHash(last)
 })
 
-const Section: Component<Props> = ({
-  title,
-  children,
-  class: cls,
-  ...attrs
-}) => {
+const Section: Component<Props> = props => {
+  const [locals, attrs] = splitProps(props, ['title', 'children', 'class'])
+
   const section = (
-    <section {...attrs} class={cls + ' py-28 print:py-6'}>
-      <h2 class="text-3xl pl-4 border-l-4 border-l-gray-600">{title}</h2>
-      <div>{children}</div>
+    <section {...attrs} class={`${locals.class} py-28 print:py-6`}>
+      <h2 class="text-3xl pl-4 border-l-4 border-l-gray-600">{locals.title}</h2>
+      <div>{locals.children}</div>
     </section>
   ) as HTMLElement
 
-  const {} = makeIntersectionObserver(
-    [section],
+  createIntersectionObserver(
+    () => [section],
     ([entry]) => {
       if (entry.target.id) {
         const hash = `#${entry.target.id}`
@@ -46,7 +44,7 @@ const Section: Component<Props> = ({
         }
       }
     },
-    { rootMargin: '0px 0px -80%' },
+    { rootMargin: '0px 0px -70%' },
   )
 
   return section

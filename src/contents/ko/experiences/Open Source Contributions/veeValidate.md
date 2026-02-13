@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - logaretm / vee-validate
 githubUrl: https://github.com/logaretm/vee-validate
 order: 7

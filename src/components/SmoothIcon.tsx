@@ -1,4 +1,4 @@
-import { Component, createSignal, onMount } from 'solid-js'
+import { type Component, createSignal, onMount } from 'solid-js'
 
 interface Props {
   iconUrl: string
@@ -7,26 +7,21 @@ interface Props {
   iconClassName?: string
 }
 
-const SmoothIcon: Component<Props> = ({
-  iconUrl,
-  iconAlt,
-  class: cls,
-  iconClassName,
-}) => {
+const SmoothIcon: Component<Props> = props => {
   const [visible, setVisible] = createSignal(false)
 
   onMount(() => {
     const image = new Image()
     image.addEventListener('load', () => setVisible(true))
-    image.src ||= iconUrl
+    image.src ||= props.iconUrl
   })
 
   return (
-    <span class={cls}>
+    <span class={props.class}>
       <img
-        src={visible() ? iconUrl : undefined}
-        alt={iconAlt}
-        class={'h-full transition-opacity duration-500 ' + iconClassName}
+        src={visible() ? props.iconUrl : undefined}
+        alt={props.iconAlt}
+        class={'h-full transition-opacity duration-500 ' + props.iconClassName}
         classList={{
           'opacity-0': !visible(),
           'opacity-100': visible(),

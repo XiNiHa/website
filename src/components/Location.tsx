@@ -1,8 +1,8 @@
 import {
-  Component,
+  type Component,
+  type JSXElement,
   createEffect,
   createSignal,
-  JSXElement,
   onMount,
 } from 'solid-js'
 import { hash as globalHash, setHash } from '@/state/location'
@@ -12,13 +12,13 @@ interface Props {
   children: JSXElement
 }
 
-const Location: Component<Props> = ({ hash, children }) => {
+const Location: Component<Props> = props => {
   const [active, setActive] = createSignal(false)
 
   onMount(() => {
-    createEffect(() => setActive(globalHash() === hash))
+    createEffect(() => setActive(globalHash() === props.hash))
     const anchor = document.querySelector(
-      `a[href="${hash}"]`,
+      `a[href="${props.hash}"]`,
     ) as HTMLElement | null
     anchor?.addEventListener('click', e => {
       e.preventDefault()
@@ -40,7 +40,7 @@ const Location: Component<Props> = ({ hash, children }) => {
           classList={{ '-translate-x-full': !active() }}
         />
       </div>
-      {children}
+      {props.children}
     </div>
   )
 }

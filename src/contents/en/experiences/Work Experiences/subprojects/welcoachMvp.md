@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - Rewrite Angular Project to Vue
 isSubproject: true
 stack:

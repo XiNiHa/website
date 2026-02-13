@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - Backend Developer @ NutritionCourt
 order: 3
 when: 2021.10 ~ 2022.10

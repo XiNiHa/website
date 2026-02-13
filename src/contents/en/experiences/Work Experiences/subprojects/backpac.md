@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - BackPac
 isSubproject: true
 stack:

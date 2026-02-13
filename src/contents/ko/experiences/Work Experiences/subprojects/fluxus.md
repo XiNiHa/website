@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - Fluxus 인프라 재개발
 isSubproject: true
 stack:

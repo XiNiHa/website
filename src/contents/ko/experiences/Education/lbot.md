@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - 엘비오티 기독혁신스쿨
 order: 2
 when: 2014 ~ 2018

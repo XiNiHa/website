@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - API Backend for Welcoach Shop
 isSubproject: true
 stack:

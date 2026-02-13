@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - 웰코치샵 프론트엔드 개발 지원
 isSubproject: true
 stack:

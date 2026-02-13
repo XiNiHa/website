@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - reason-seoul / yarn-plugin-rescript
 githubUrl: https://github.com/reason-seoul/yarn-plugin-rescript
 order: 4

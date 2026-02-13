@@ -1,6 +1,6 @@
 ---
-title_:
-  - "선택 2021: 신의하의 머리색에 투표하세요"
+title:
+  - '선택 2021: 신의하의 머리색에 투표하세요'
 githubUrl: https://github.com/XiNiHa/vote-for-hair-color
 order: 4
 when: '2021.09'

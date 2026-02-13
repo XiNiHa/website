@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - Welcoach Mobile App
 isSubproject: true
 stack:

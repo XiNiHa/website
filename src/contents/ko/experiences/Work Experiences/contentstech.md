@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - Software Engineer @ Contents Technologies
 order: 1
 when: 2024.07 ~ 2025.08

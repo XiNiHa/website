@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - DX Engineer @ PortOne
 order: 2
 when: 2022.10 ~ 2024.07

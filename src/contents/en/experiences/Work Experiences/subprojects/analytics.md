@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - PortOne Analytics
 isSubproject: true
 stack:

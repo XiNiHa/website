@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - Welcoach 앱 개발 및 유지보수
 isSubproject: true
 stack:

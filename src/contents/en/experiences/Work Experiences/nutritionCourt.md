@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - Frontend Developer @ NutritionCourt
 order: 4
 when: 2020.09 ~ 2021.07

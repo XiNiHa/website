@@ -1,4 +1,4 @@
-import { Component } from 'solid-js'
+import type { Component } from 'solid-js'
 import SmoothIcon from '@/components/SmoothIcon'
 import { activeTech, setActiveTech } from '@/state/tech'
 
@@ -7,22 +7,22 @@ interface Props {
   text: string
 }
 
-const Chip: Component<Props> = ({ iconUrl, text }) => {
+const Chip: Component<Props> = (props) => {
   return (
     <button
       class="flex items-center gap-2 h-10 px-4 py-2 rounded-full bg-#d2d2d2 border font-sans text-xl text-#3 transition-all duration-500 hover:opacity-100"
       classList={{
-        'border-#c shadow': activeTech() === text,
-        'border-transparent opacity-70': activeTech() !== text,
+        'border-#c shadow': activeTech() === props.text,
+        'border-transparent opacity-70': activeTech() !== props.text,
       }}
-      onClick={() => setActiveTech(text)}
+      onClick={() => setActiveTech(props.text)}
     >
       <SmoothIcon
         class="w-22px h-22px"
-        iconUrl={iconUrl}
-        iconAlt={`${text} icon`}
+        iconUrl={props.iconUrl}
+        iconAlt={`${props.text} icon`}
       />
-      {text}
+      {props.text}
     </button>
   )
 }

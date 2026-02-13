@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - Software Development B.S. @ Full Sail University
 order: 1
 when: 2019 ~ 2021

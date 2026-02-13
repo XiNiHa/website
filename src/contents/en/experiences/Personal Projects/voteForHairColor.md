@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - "Vote 2021: Choose XiNiHa's Hair Color"
 githubUrl: https://github.com/XiNiHa/vote-for-hair-color
 order: 4

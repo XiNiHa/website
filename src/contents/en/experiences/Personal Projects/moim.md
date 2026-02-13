@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - Moim
 order: 7
 when: 2019.12 ~ 2020.02

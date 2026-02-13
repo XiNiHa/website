@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - 결제 브릿지 페이지
 isSubproject: true
 stack:

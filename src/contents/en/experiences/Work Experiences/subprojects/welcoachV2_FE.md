@@ -1,5 +1,5 @@
 ---
-title_:
+title:
   - Frontend Development Assistance for Welcoach Shop
 isSubproject: true
 stack:
