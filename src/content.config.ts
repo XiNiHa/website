@@ -24,4 +24,16 @@ export const collections = {
       fixedPart: z.array(z.string()),
     }),
   }),
+  openSourceContributions: defineCollection({
+    loader: glob({
+      pattern: '**/open-source-contributions/*.yaml',
+      base: './src/contents',
+    }),
+    schema: z.object({
+      owner: z.string(),
+      name: z.string(),
+      stack: z.array(z.string()),
+      contributions: z.array(z.number().int().positive()),
+    }),
+  }),
 }

@@ -1,0 +1,10 @@
+owner: async-graphql
+name: async-graphql
+order: 5
+when: '2021.06'
+stack:
+  - Rust
+  - GraphQL
+  - Rocket
+contributions:
+  - 545

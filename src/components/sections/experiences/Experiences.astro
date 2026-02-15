@@ -3,6 +3,7 @@ import { type CollectionEntry, getCollection } from 'astro:content'
 import Section from '@/components/Section'
 import Subsection from './Subsection.astro'
 import Item from './Item'
+import OpenSourceContributions from './OpenSourceContributions.astro'
 
 interface Props {
   lang?: string
@@ -18,7 +19,6 @@ const {
   workExperiences = [],
   workSubprojects = [],
   personalProjects = [],
-  openSourceContributions = [],
   education = [],
 } = Object.groupBy(matchingExperiences, e =>
   e.filePath?.includes('/Work Experiences/subprojects/')
@@ -27,9 +27,7 @@ const {
       ? 'workExperiences'
       : e.filePath?.includes('/Personal Projects/')
         ? 'personalProjects'
-        : e.filePath?.includes('/Open Source Contributions/')
-          ? 'openSourceContributions'
-          : 'education',
+        : 'education',
 )
 
 const workSubprojectsMap = new Map<string, CollectionEntry<'experiences'>>(
@@ -44,7 +42,6 @@ const workSubprojectsMap = new Map<string, CollectionEntry<'experiences'>>(
 workExperiences.sort((a, b) => a.data.order - b.data.order)
 workSubprojects.sort((a, b) => a.data.order - b.data.order)
 personalProjects.sort((a, b) => a.data.order - b.data.order)
-openSourceContributions.sort((a, b) => a.data.order - b.data.order)
 education.sort((a, b) => a.data.order - b.data.order)
 ---
 
@@ -83,11 +80,7 @@ education.sort((a, b) => a.data.order - b.data.order)
       }
     </Subsection>
     <Subsection title="Open Source Contributions">
-      {
-        openSourceContributions.map(entry => (
-          <Item client:visible experience={entry} />
-        ))
-      }
+      <OpenSourceContributions />
     </Subsection>
     <Subsection title="Education">
       {education.map(entry => <Item client:visible experience={entry} />)}
