@@ -1,0 +1,7 @@
+owner: TanStack
+name: router
+stack:
+  - TypeScript
+  - SolidJS
+contributions:
+  - 3589

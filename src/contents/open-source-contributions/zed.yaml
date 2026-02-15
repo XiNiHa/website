@@ -1,0 +1,7 @@
+owner: zed-industries
+name: zed
+stack:
+  - Rust
+  - Language Server Protocol (LSP)
+contributions:
+  - 29359
