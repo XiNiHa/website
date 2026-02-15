@@ -1,14 +1,13 @@
 ---
 title: Rust
-order: 7
+order: 2
 iconUrl: https://cdn.svgporn.com/logos/rust.svg
 ---
 
-I love Rust because it's a safe and fast language,<br>
-based on its unique features like ownership and lifetimes.
-
-Also, its powerful type system constructed with great features like traits and enums<br>
-makes the language very attractive.
-
-In addition, the macro system that is powerful and flexible<br>
-is also a wonderful feature that only a few languages have.
+I mainly use Rust for servers, native modules, and CLI tools,<br>
+and can apply it freely in most scenarios<br>
+except for unsafe code and highly advanced async patterns.<br>
+I design interfaces with Rust's type system,<br>
+including traits and enums, in the right contexts,<br>
+and I sometimes build macros tailored to the situation<br>
+to improve developer experience and productivity.
