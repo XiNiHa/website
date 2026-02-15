@@ -1,9 +1,8 @@
 owner: unocss
 name: unocss
-order: 3
-when: '2022 ~'
 stack:
   - TypeScript
   - Atomic CSS
 contributions:
   - 899
+  - 4392

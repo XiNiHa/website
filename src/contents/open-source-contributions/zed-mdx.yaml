@@ -1,0 +1,8 @@
+owner: bajrangCoder
+name: zed-mdx
+stack:
+  - Rust
+  - Language Server Protocol (LSP)
+  - MDX
+contributions:
+  - 1

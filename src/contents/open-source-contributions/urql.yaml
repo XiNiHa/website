@@ -1,0 +1,9 @@
+owner: urql-graphql
+name: urql
+stack:
+  - TypeScript
+  - GraphQL
+contributions:
+  - 3672
+  - 3674
+  - 3677
