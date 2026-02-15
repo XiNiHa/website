@@ -1,0 +1,11 @@
+owner: logaretm
+name: vee-validate
+order: 7
+when: '2020.10'
+stack:
+  - TypeScript
+  - Vue.js 2
+  - Jest
+  - Vue Test Utils
+contributions:
+  - 2980

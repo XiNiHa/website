@@ -1,0 +1,171 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import { getCollection } from 'astro:content'
+
+type PullRequestDetail = {
+  title: string
+  html_url: string
+  number: number
+  state: 'open' | 'closed'
+  merged_at: string | null
+  updated_at: string
+  user: {
+    login: string
+    html_url: string
+  }
+  base: {
+    repo: {
+      full_name: string
+    }
+  }
+}
+
+const fetchPullRequestDetail = async (
+  entry: CollectionEntry<'openSourceContributions'>,
+  number: number,
+) => {
+  const commonHeaders = {
+    Accept: 'application/vnd.github+json',
+    'X-GitHub-Api-Version': '2022-11-28',
+    'User-Agent': 'xiniha-website',
+  }
+  const response = await fetch(
+    `https://api.github.com/repos/${entry.data.owner}/${entry.data.name}/pulls/${number}`,
+    {
+      headers: {
+        ...commonHeaders,
+        ...(import.meta.env.GITHUB_TOKEN
+          ? { Authorization: `Bearer ${import.meta.env.GITHUB_TOKEN}` }
+          : null),
+      },
+    },
+  )
+
+  if (!response.ok) {
+    const message = `Failed to fetch pull request detail for ${entry.data.owner}/${entry.data.name}#${number}`
+    console.error(message, await response.json())
+    throw new Error(message)
+  }
+
+  return (await response.json()) as PullRequestDetail
+}
+
+const entries = await getCollection('openSourceContributions')
+const contributions = await Promise.all(
+  entries.map(async entry => ({
+    entry,
+    pullRequests: await Promise.all(
+      entry.data.contributions.map(async number => ({
+        number,
+        url: `https://github.com/${entry.data.owner}/${entry.data.name}/pull/${number}`,
+        detail: await fetchPullRequestDetail(entry, number),
+      })),
+    ),
+    repositoryUrl: `https://github.com/${entry.data.owner}/${entry.data.name}`,
+  })),
+)
+const sortedContributions = contributions.toSorted((a, b) => {
+  const aLatestPr = a.pullRequests.toSorted(
+    (a, b) =>
+      new Date(b.detail.updated_at).getTime() -
+      new Date(a.detail.updated_at).getTime(),
+  )[0]
+  const bLatestPr = b.pullRequests.toSorted(
+    (a, b) =>
+      new Date(b.detail.updated_at).getTime() -
+      new Date(a.detail.updated_at).getTime(),
+  )[0]
+  return (
+    new Date(bLatestPr.detail.updated_at).getTime() -
+    new Date(aLatestPr.detail.updated_at).getTime()
+  )
+})
+
+const formatDate = (iso: string) =>
+  new Intl.DateTimeFormat('en-US', {
+    month: 'short',
+    year: 'numeric',
+  }).format(new Date(iso))
+
+const getStateMeta = (detail: PullRequestDetail) => {
+  if (detail.merged_at) {
+    return {
+      label: 'Merged',
+      iconClass: 'i-bi-git text-violet-500',
+      badgeClass: 'bg-violet-100 text-violet-700',
+    }
+  }
+
+  if (detail.state === 'open') {
+    return {
+      label: 'Open',
+      iconClass: 'i-bi-git text-emerald-600',
+      badgeClass: 'bg-emerald-100 text-emerald-700',
+    }
+  }
+
+  return {
+    label: 'Closed',
+    iconClass: 'i-bi-git text-gray-500',
+    badgeClass: 'bg-gray-200 text-gray-700',
+  }
+}
+---
+
+{
+  sortedContributions.map(({ entry, pullRequests, repositoryUrl }) => (
+    <li class="print:break-inside-avoid-page">
+      <details>
+        <summary class="list-none">
+          <div class="flex items-center gap-x-2 gap-y-1 flex-wrap w-fit border-b border-b-transparent transition-colors duration-200 cursor-default hover:border-b-gray-300">
+            <h3 class="text-lg xl:text-xl text-#555 flex items-center gap-2 flex-wrap leading-1 select-none">
+              <span class="-ml-3">-</span>
+              {entry.data.owner} / {entry.data.name}
+            </h3>
+            <a
+              href={repositoryUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mx-1 h-fit flex print:hidden"
+            >
+              <i class="i-bi-github text-lg xl:text-xl" />
+            </a>
+            <div class="flex flex-wrap items-center gap-2 my-1">
+              {entry.data.stack.map(tech => (
+                <span class="rounded-full h-5 xl:h-6 bg-#ddd px-3 text-sm text-#555 xl:text-base">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+        </summary>
+        <ul class="mt-1 flex flex-col gap-1 w-fit">
+          {pullRequests.map(pr => (
+            <li>
+              <div class="flex items-center gap-2 px-1 w-fit text-#888 border-b border-b-transparent transition-colors duration-200 hover:border-b-gray-300">
+                <a
+                  href={pr.detail.html_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="min-w-0 text-sm"
+                >
+                  <span class="mr-1">#{pr.detail.number}</span>
+                  {pr.detail.title}
+                </a>
+                <span
+                  class={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium whitespace-nowrap shrink-0 ${getStateMeta(pr.detail).badgeClass}`}
+                >
+                  <i class={getStateMeta(pr.detail).iconClass} />
+                  {getStateMeta(pr.detail).label}
+                </span>
+                <span class="text-xs whitespace-nowrap shrink-0">
+                  {formatDate(pr.detail.updated_at)}
+                </span>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </details>
+    </li>
+  ))
+}

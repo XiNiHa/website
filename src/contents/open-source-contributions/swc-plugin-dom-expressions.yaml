@@ -1,0 +1,9 @@
+owner: modderme123
+name: swc-plugin-jsx-dom-expressions
+order: 1
+when: '2023'
+stack:
+  - Rust
+  - swc
+contributions:
+  - 1
