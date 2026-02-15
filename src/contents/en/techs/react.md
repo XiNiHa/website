@@ -1,13 +1,12 @@
 ---
 title: React
-order: 6
+order: 3
 iconUrl: https://cdn.svgporn.com/logos/react.svg
 ---
 
-React is leading the frontend development ecosystem<br>
-with a technical foundation mainly based on functional programming.
-
-It provides declarative and flexible ways to write UI,<br>
-and many ecosystem packages make the power of React much more powerful.
-
-The power that React provides is what makes me love it.
+Beyond implementing apps with React's core features,<br>
+I also understand and can apply advanced features such as<br>
+Suspense, Streaming SSR, and Server Components.<br>
+With strong ecosystem knowledge across frameworks and libraries,<br>
+I can properly debug issues across multiple application layers<br>
+and find effective solutions.

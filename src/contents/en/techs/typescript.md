@@ -1,11 +1,11 @@
 ---
 title: TypeScript
-order: 2
+order: 1
 iconUrl: https://cdn.svgporn.com/logos/typescript-icon.svg
 ---
 
-TypeScript integrates very well with the existing JavaScript ecosystem,<br>
-while also having a type system that is both strong and also flexible.<br>
-
-This results in a massive productivity and stability win,<br>
-which is enough reason to love it.
+I use TypeScript as my primary language across environments,<br>
+including browsers, servers, edge runtimes, and CLI tools.<br>
+Beyond basic language features, I can also handle advanced work<br>
+such as interface design with complex type-level techniques<br>
+and library/framework design.

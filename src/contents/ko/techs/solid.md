@@ -1,9 +1,13 @@
 ---
 title: SolidJS
-order: 5
+order: 6
 iconUrl: https://cdn.svgporn.com/logos/solidjs-icon.svg
 ---
 
-Signal 기반의 반응형 시스템으로 놀라운 수준의 성능을 보여 주면서,<br>
-Suspense나 Streaming SSR 등 최신 고급 기능들까지 갖춘,<br>
-다방면에서 매우 뛰어난 라이브러리라는 점을 좋아합니다.
+SolidJS와 주변 생태계, 기반 툴링 등에 대한<br>
+소스 코드 레벨의 깊은 이해를 갖추고 있으며,<br>
+SolidJS를 활용한 프로젝트의 전체 생애 주기에 걸쳐<br>
+성능 개선이나 디버깅, 툴링 개선 등<br>
+다양한 방면에서의 문제 해결 및 기여가 가능합니다.<br>
+또한 [Solid Korea](https://discord.solid-korea.org)라는 커뮤니티를 운영하며<br>
+SolidJS 생태계 확장을 위해 노력하고 있습니다.
