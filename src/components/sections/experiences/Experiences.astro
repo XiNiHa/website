@@ -18,16 +18,13 @@ const matchingExperiences = allExperiences.filter(e =>
 const {
   workExperiences = [],
   workSubprojects = [],
-  personalProjects = [],
   education = [],
 } = Object.groupBy(matchingExperiences, e =>
   e.filePath?.includes('/Work Experiences/subprojects/')
     ? 'workSubprojects'
     : e.filePath?.includes('/Work Experiences/')
       ? 'workExperiences'
-      : e.filePath?.includes('/Personal Projects/')
-        ? 'personalProjects'
-        : 'education',
+      : 'education',
 )
 
 const workSubprojectsMap = new Map<string, CollectionEntry<'experiences'>>(
@@ -41,7 +38,6 @@ const workSubprojectsMap = new Map<string, CollectionEntry<'experiences'>>(
 
 workExperiences.sort((a, b) => a.data.order - b.data.order)
 workSubprojects.sort((a, b) => a.data.order - b.data.order)
-personalProjects.sort((a, b) => a.data.order - b.data.order)
 education.sort((a, b) => a.data.order - b.data.order)
 ---
 
@@ -69,13 +65,6 @@ education.sort((a, b) => a.data.order - b.data.order)
             experience={entry}
             subprojectMap={new Map(workSubprojectsMap.entries())}
           />
-        ))
-      }
-    </Subsection>
-    <Subsection title="Personal Projects">
-      {
-        personalProjects.map(entry => (
-          <Item client:visible experience={entry} />
         ))
       }
     </Subsection>
