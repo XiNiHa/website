@@ -139,7 +139,7 @@ const getStateMeta = (detail: PullRequestDetail) => {
             </div>
           </div>
         </summary>
-        <ul class="mt-1 flex flex-col gap-1 w-fit">
+        <ul class="mt-1 flex flex-col gap-1 w-fit print:hidden">
           {pullRequests.map(pr => (
             <li>
               <div class="flex items-center gap-2 px-1 w-fit text-#888 border-b border-b-transparent transition-colors duration-200 hover:border-b-gray-300">
