@@ -1,13 +1,14 @@
 ---
 title:
   - Backend Developer @ NutritionCourt
-order: 3
+order: 4
 when: 2021.10 ~ 2022.10
 subprojects:
+  - welcoachV1_2
   - welcoachV2_BE
   - welcoachV2_FE
 fixedPart:
-  - NutritionCourt is an AI healthcare startup that creates a personalized meal plan based on a user's health data.
+  - Worked as a backend developer at NutritionCourt, an AI healthcare startup.
 ---
 
 After previously leaving the company, I rejoined the team as a backend developer<br>

@@ -1,7 +1,7 @@
 ---
 title:
   - Software Engineer @ Contents Technologies
-order: 1
+order: 2
 when: 2024.07 ~ 2025.08
 subprojects:
   - backpac

@@ -1,14 +1,14 @@
 ---
 title:
   - DX Engineer @ PortOne
-order: 2
+order: 3
 when: 2022.10 ~ 2024.07
 subprojects:
   - sdkDrivers
   - analytics
   - paymentBridge
 fixedPart:
-  - PortOne is a SaaS company that provides various payment services.
+  - Worked as a DX engineer at PortOne, a company building payment-related SaaS products.
 ---
 
 As a DX engineer focused on the frontend, I was responsible for, but not limited to,<br>
