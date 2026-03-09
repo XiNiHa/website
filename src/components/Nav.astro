@@ -50,16 +50,20 @@ const links = {
         {lang === 'ko' ? 'View in English 🇺🇸' : '한국어로 보기 🇰🇷'}
       </a>
     </li>
-    <!-- <li class="my-2 print:hidden">
-      <a
-        href={lang === "ko" ? "/신의하_이력서.pdf" : "/Iha_Shin_Resume.pdf"}
-        class="ml-6 inline-block text-gray-500 hover:underlinec"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {lang === "ko" ? "PDF 버전 보기" : "View PDF"}
-        <div class="inline-block i-bi-file-earmark-pdf" />
-      </a>
-    </li> -->
+    <li class="my-2 print:hidden">
+      {
+        lang === 'ko' && (
+          <a
+            href="/신의하_이력서.pdf"
+            class="ml-6 inline-block text-gray-500 hover:underlinec"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {lang === 'ko' ? 'PDF 버전 보기' : 'View PDF'}
+            <div class="inline-block i-bi-file-earmark-pdf" />
+          </a>
+        )
+      }
+    </li>
   </ul>
 </nav>
