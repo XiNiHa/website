@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content'
+import Section from '@/components/Section'
+import Item from './Item'
+
+interface Props {
+  lang?: string
+}
+
+const { lang = 'ko' } = Astro.props
+
+const allExperiences = await getCollection('experiences')
+const education = allExperiences
+  .filter(
+    e =>
+      e.filePath?.includes(`/${lang}/`) && e.filePath.includes('/Education/'),
+  )
+  .toSorted((a, b) => a.data.order - b.data.order)
+---
+
+<Section
+  id="education"
+  title="Education"
+  class="print:break-before-page"
+  client:idle
+>
+  <ul class="py-6">
+    {education.map(entry => <Item client:visible experience={entry} />)}
+  </ul>
+</Section>

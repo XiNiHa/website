@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content'
 import { getCollection } from 'astro:content'
+import Section from '@/components/Section'
 
 type PullRequestDetail = {
   title: string
@@ -112,60 +113,69 @@ const getStateMeta = (detail: PullRequestDetail) => {
 }
 ---
 
-{
-  sortedContributions.map(({ entry, pullRequests, repositoryUrl }) => (
-    <li class="print:break-inside-avoid-page">
-      <details>
-        <summary class="list-none">
-          <div class="flex items-center gap-x-2 gap-y-1 flex-wrap w-fit border-b border-b-transparent transition-colors duration-200 cursor-default hover:border-b-gray-300">
-            <h3 class="text-lg xl:text-xl text-#555 flex items-center gap-2 flex-wrap leading-1 select-none">
-              <span class="-ml-3">-</span>
-              {entry.data.owner} / {entry.data.name}
-            </h3>
-            <a
-              href={repositoryUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="mx-1 h-fit flex print:hidden"
-            >
-              <i class="i-bi-github text-lg xl:text-xl" />
-            </a>
-            <div class="flex flex-wrap items-center gap-2 my-1">
-              {entry.data.stack.map(tech => (
-                <span class="rounded-full h-5 xl:h-6 bg-#ddd px-3 text-sm text-#555 xl:text-base">
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-        </summary>
-        <ul class="mt-1 flex flex-col gap-1 w-fit print:hidden">
-          {pullRequests.map(pr => (
-            <li>
-              <div class="flex items-center gap-2 px-1 w-fit text-#888 border-b border-b-transparent transition-colors duration-200 hover:border-b-gray-300">
+<Section
+  id="open-source-contributions"
+  title="Open Source Contributions"
+  class="print:break-before-page"
+  client:idle
+>
+  <ul class="py-6">
+    {
+      sortedContributions.map(({ entry, pullRequests, repositoryUrl }) => (
+        <li class="print:break-inside-avoid-page">
+          <details>
+            <summary class="list-none">
+              <div class="flex items-center gap-x-2 gap-y-1 flex-wrap w-fit border-b border-b-transparent transition-colors duration-200 cursor-default hover:border-b-gray-300">
+                <h3 class="text-lg xl:text-xl text-#555 flex items-center gap-2 flex-wrap leading-1 select-none">
+                  <span class="-ml-3">-</span>
+                  {entry.data.owner} / {entry.data.name}
+                </h3>
                 <a
-                  href={pr.detail.html_url}
+                  href={repositoryUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="min-w-0 text-sm"
+                  class="mx-1 h-fit flex print:hidden"
                 >
-                  <span class="mr-1">#{pr.detail.number}</span>
-                  {pr.detail.title}
+                  <i class="i-bi-github text-lg xl:text-xl" />
                 </a>
-                <span
-                  class={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium whitespace-nowrap shrink-0 ${getStateMeta(pr.detail).badgeClass}`}
-                >
-                  <i class={getStateMeta(pr.detail).iconClass} />
-                  {getStateMeta(pr.detail).label}
-                </span>
-                <span class="text-xs whitespace-nowrap shrink-0">
-                  {formatDate(pr.detail.updated_at)}
-                </span>
+                <div class="flex flex-wrap items-center gap-2 my-1">
+                  {entry.data.stack.map(tech => (
+                    <span class="rounded-full h-5 xl:h-6 bg-#ddd px-3 text-sm text-#555 xl:text-base">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </li>
-          ))}
-        </ul>
-      </details>
-    </li>
-  ))
-}
+            </summary>
+            <ul class="mt-1 flex flex-col gap-1 w-fit print:hidden">
+              {pullRequests.map(pr => (
+                <li>
+                  <div class="flex items-center gap-2 px-1 w-fit text-#888 border-b border-b-transparent transition-colors duration-200 hover:border-b-gray-300">
+                    <a
+                      href={pr.detail.html_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="min-w-0 text-sm"
+                    >
+                      <span class="mr-1">#{pr.detail.number}</span>
+                      {pr.detail.title}
+                    </a>
+                    <span
+                      class={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium whitespace-nowrap shrink-0 ${getStateMeta(pr.detail).badgeClass}`}
+                    >
+                      <i class={getStateMeta(pr.detail).iconClass} />
+                      {getStateMeta(pr.detail).label}
+                    </span>
+                    <span class="text-xs whitespace-nowrap shrink-0">
+                      {formatDate(pr.detail.updated_at)}
+                    </span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </details>
+        </li>
+      ))
+    }
+  </ul>
+</Section>

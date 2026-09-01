@@ -1,9 +1,7 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content'
 import Section from '@/components/Section'
-import Subsection from './Subsection.astro'
 import Item from './Item'
-import OpenSourceContributions from './OpenSourceContributions.astro'
 
 interface Props {
   lang?: string
@@ -12,19 +10,16 @@ interface Props {
 const { lang = 'ko' } = Astro.props
 
 const allExperiences = await getCollection('experiences')
-const matchingExperiences = allExperiences.filter(e =>
-  e.filePath?.includes(`/${lang}/`),
-)
-const {
-  workExperiences = [],
-  workSubprojects = [],
-  education = [],
-} = Object.groupBy(matchingExperiences, e =>
-  e.filePath?.includes('/Work Experiences/subprojects/')
-    ? 'workSubprojects'
-    : e.filePath?.includes('/Work Experiences/')
-      ? 'workExperiences'
-      : 'education',
+const { workExperiences = [], workSubprojects = [] } = Object.groupBy(
+  allExperiences.filter(
+    e =>
+      e.filePath?.includes(`/${lang}/`) &&
+      e.filePath.includes('/Work Experiences/'),
+  ),
+  e =>
+    e.filePath?.includes('/Work Experiences/subprojects/')
+      ? 'workSubprojects'
+      : 'workExperiences',
 )
 
 const workSubprojectsMap = new Map<string, CollectionEntry<'experiences'>>(
@@ -37,14 +32,12 @@ const workSubprojectsMap = new Map<string, CollectionEntry<'experiences'>>(
 )
 
 workExperiences.sort((a, b) => a.data.order - b.data.order)
-workSubprojects.sort((a, b) => a.data.order - b.data.order)
-education.sort((a, b) => a.data.order - b.data.order)
 ---
 
 <Section
-  id="experiences"
-  title="Experiences"
-  class="min-h-120vh print:break-before-page"
+  id="work-experiences"
+  title="Work Experiences"
+  class="print:break-before-page"
   client:idle
 >
   <div class="py-6">
@@ -57,7 +50,7 @@ education.sort((a, b) => a.data.order - b.data.order)
           : 'Additional information is displayed when you click on each item.'
       }
     </p>
-    <Subsection title="Work Experiences" first>
+    <ul>
       {
         workExperiences.map(entry => (
           <Item
@@ -67,12 +60,6 @@ education.sort((a, b) => a.data.order - b.data.order)
           />
         ))
       }
-    </Subsection>
-    <Subsection title="Open Source Contributions">
-      <OpenSourceContributions />
-    </Subsection>
-    <Subsection title="Education">
-      {education.map(entry => <Item client:visible experience={entry} />)}
-    </Subsection>
+    </ul>
   </div>
 </Section>
