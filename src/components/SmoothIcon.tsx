@@ -21,7 +21,7 @@ const SmoothIcon: Component<Props> = props => {
       <img
         src={visible() ? props.iconUrl : undefined}
         alt={props.iconAlt}
-        class={'h-full transition-opacity duration-500 ' + props.iconClassName}
+        class={'h-full transition-opacity duration-500 print:opacity-100 ' + props.iconClassName}
         classList={{
           'opacity-0': !visible(),
           'opacity-100': visible(),

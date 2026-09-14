@@ -10,7 +10,7 @@ import contactData from '@/contents/contact.yaml'
   class="h-80vh"
   client:idle
 >
-  <ul class="flex flex-col text-xl xl:text-3xl text-#555 py-10 gap-2">
+  <ul class="flex flex-col text-xl xl:text-3xl text-#555 py-10 gap-2 print:py-4">
     {
       contactData.contacts.filter(Boolean).map((contact: any) => (
         <li class="flex items-center">

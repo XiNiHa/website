@@ -1,5 +1,5 @@
 ---
-import { type CollectionEntry, getCollection } from 'astro:content'
+import { getCollection } from 'astro:content'
 import Section from '@/components/Section'
 import Item from './Item'
 
@@ -10,37 +10,21 @@ interface Props {
 const { lang = 'ko' } = Astro.props
 
 const allExperiences = await getCollection('experiences')
-const { workExperiences = [], workSubprojects = [] } = Object.groupBy(
-  allExperiences.filter(
+const workExperiences = allExperiences
+  .filter(
     e =>
       e.filePath?.includes(`/${lang}/`) &&
       e.filePath.includes('/Work Experiences/'),
-  ),
-  e =>
-    e.filePath?.includes('/Work Experiences/subprojects/')
-      ? 'workSubprojects'
-      : 'workExperiences',
-)
-
-const workSubprojectsMap = new Map<string, CollectionEntry<'experiences'>>(
-  workSubprojects
-    .map(e => {
-      const id = e.filePath?.split('/').at(-1)?.replace('.md', '')
-      return id ? ([id, e] as const) : null
-    })
-    .filter(v => v != null),
-)
-
-workExperiences.sort((a, b) => a.data.order - b.data.order)
+  )
+  .toSorted((a, b) => a.data.order - b.data.order)
 ---
 
 <Section
   id="work-experiences"
   title="Work Experiences"
-  class="print:break-before-page"
   client:idle
 >
-  <div class="py-6">
+  <div class="py-6 print:py-2">
     <p
       class="my-4 px-6 py-4 rounded-xl bg-gray-200 text-xl text-#333 w-fit print:hidden"
     >
@@ -50,16 +34,8 @@ workExperiences.sort((a, b) => a.data.order - b.data.order)
           : 'Additional information is displayed when you click on each item.'
       }
     </p>
-    <ul>
-      {
-        workExperiences.map(entry => (
-          <Item
-            client:visible
-            experience={entry}
-            subprojectMap={new Map(workSubprojectsMap.entries())}
-          />
-        ))
-      }
+    <ul class="flex flex-col gap-6">
+      {workExperiences.map(entry => <Item client:visible experience={entry} />)}
     </ul>
   </div>
 </Section>

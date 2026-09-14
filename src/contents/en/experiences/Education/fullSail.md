@@ -6,8 +6,5 @@ when: 2019 ~ 2021
 fixedPart:
   - Graduated as valedictorian with a GPA of 3.77/4.0 through a 20-month accelerated program.
 ---
-
-In 2019, I attended in-person classes in the US with local students,<br>
-and from early 2020, I took online classes from Korea due to COVID-19.
-
-The program helped solidify my knowledge in various CS fields, including operating systems, data structures, concurrent programming, and MIPS assembly.
+After attending in-person classes in the US in 2019, I took online classes from Korea from early 2020 due to COVID-19.
+The program built my CS fundamentals in operating systems, data structures, concurrent programming, MIPS assembly, and more.

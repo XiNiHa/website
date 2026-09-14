@@ -26,8 +26,8 @@ const Section: Component<Props> = props => {
   const [locals, attrs] = splitProps(props, ['title', 'children', 'class'])
 
   const section = (
-    <section {...attrs} class={`${locals.class} py-28 print:py-6`}>
-      <h2 class="text-3xl pl-4 border-l-4 border-l-gray-600">{locals.title}</h2>
+    <section {...attrs} class={`${locals.class} py-28 print:py-2`}>
+      <h2 class="text-3xl pl-4 border-l-4 border-l-gray-600 print:(text-lg pl-3)">{locals.title}</h2>
       <div>{locals.children}</div>
     </section>
   ) as HTMLElement
