@@ -16,6 +16,6 @@ export default defineConfig({
   shortcuts: {
     'hide-br-on-small': 'lt-lg:[&_br]:hidden',
     'markdown-body':
-      'whitespace-pre [&_ul]:(list-disc pl-6 mt-4 flex flex-col gap-3) [&_li]:print:break-inside-avoid-page [&_a]:(underline text-#666)',
+      'whitespace-pre-wrap [&_ul]:(list-disc pl-6 mt-4 flex flex-col gap-3) [&_li]:print:break-inside-avoid-page [&_a]:(underline text-#666)',
   },
 })
